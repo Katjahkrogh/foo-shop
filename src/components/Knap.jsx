@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
-function Knap({text, id, setStep}) {
+function Knap({ text, id, setStep }) {
   return (
     <button
       type="submit"
@@ -12,9 +12,8 @@ function Knap({text, id, setStep}) {
       }}
     >
       {text}
-      <Link href={""}></Link>
     </button>
   );
 }
 
-export default Knap
+export default Knap;
