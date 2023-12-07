@@ -1,6 +1,9 @@
+"use client";
+import { useEffect } from "react";
 import Knap from "./Knap";
 
-function TicketType() {
+function TicketType({setStep}) {
+
   return (
     <div className="bg-fooGrey-900 m-10 rounded-xl p-20">
       <h1 className="text-fooYellow-200 text-3xl">FOOFEST </h1>
@@ -25,7 +28,7 @@ function TicketType() {
           </label>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-10">
           <div>
             <h3>VIP-BILLET</h3>
             <p>1299 DKK</p>
@@ -39,8 +42,8 @@ function TicketType() {
             />
           </label>
         </div>
-
-        <Knap id="billet" text="VÆLG CAMPING"></Knap>
+        <div className="flex justify-end">
+        <Knap setStep={setStep} id="billet" text="VÆLG CAMPING"></Knap></div>
       </form>
     </div>
   );
