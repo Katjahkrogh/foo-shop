@@ -43,7 +43,8 @@ function TicketType({setStep}) {
           </label>
         </div>
         <div className="flex justify-end">
-        <Knap setStep={setStep} id="billet" text="VÆLG CAMPING"></Knap></div>
+          <Knap setStep={setStep} id="billet" text="VÆLG CAMPING"></Knap>
+        </div>
       </form>
     </div>
   );
