@@ -6,40 +6,60 @@ function Camping() {
       <h1 className="text-fooYellow-200 text-3xl">FOOFEST </h1>
       <p>Mandag d. 10 Juli - Søndag d. 17 Juli 2024</p>
 
-      <form action="" id="billet">
-        <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
-CAMPIIIINg        </legend>
-        <div className="flex justify-between">
-          <div>
-            <h3>FOO-BILLET</h3>
-            <p>799 DKK</p>
-          </div>
-          <label htmlFor="foo-billet">
-            <input
-              className="text-black"
-              type="number"
-              name="foo-billet"
-              min={0}
-            />
+      <form action="" id="camping">
+        {/* VÆLG CAMPING */}
+        <fieldset>
+          <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
+            VÆLG CAMPING OMRÅDE
+          </legend>
+          <p>CAMPING RESEVERTATION 99 DKK</p>
+          <label htmlFor="midgard">
+            <input className="text-black" type="radio" name="midgard" />
+            Midgard
           </label>
-        </div>
-
-        <div className="flex justify-between">
-          <div>
-            <h3>VIP-BILLET</h3>
-            <p>1299 DKK</p>
-          </div>
-          <label htmlFor="vip-billet">
-            <input
-              className="text-black"
-              type="number"
-              name="vip-billet"
-              min={0}
-            />
+          <label htmlFor="vanaheim">
+            <input className="text-black" type="radio" name="vanaheim" />
+            Vanaheim
           </label>
-        </div>
+          <label htmlFor="jotunheim">
+            <input className="text-black" type="radio" name="jotunheim" />
+            Jotunheim
+          </label>
+        </fieldset>
 
-        <Knap id="billet" text="VÆLG CAMPING"></Knap>
+        {/* TILKØB TELTE */}
+        <fieldset>
+          <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
+            TILKØB AF TELTE
+          </legend>
+          <p>INKL. OPSÆTNING AF TELT PÅ PLADSEN</p>
+          <label htmlFor="telt2">
+            <input className="text-black" type="radio" name="telt2" />2
+            PERSONERS TELT + 299 DKK
+          </label>
+          <label htmlFor="telt3">
+            <input className="text-black" type="radio" name="telt3" />3
+            PERSONERS TELT + 399 DKK
+          </label>
+          <label htmlFor="person-telt">
+            <input className="text-black" type="radio" name="person-telt" />
+            TELT TIL ANTAL BILLETTER + 199 DKK PER TELT
+          </label>
+        </fieldset>
+
+        {/* GREEN CAMPING */}
+        <fieldset>
+          <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
+            TILVALG
+          </legend>
+          <label htmlFor="telt2">
+            <input className="text-black" type="radio" name="telt2" />2
+            PERSONERS TELT + 299 DKK
+          </label>
+        </fieldset>
+        <div className="flex justify-end">
+          <Knap id="camping" text="FIND MINE BILLETTER"></Knap>
+        </div>
       </form>
     </div>
   );
