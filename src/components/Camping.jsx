@@ -13,17 +13,25 @@ function Camping() {
             VÆLG CAMPING OMRÅDE
           </legend>
           <p>CAMPING RESEVERTATION 99 DKK</p>
-          <label htmlFor="midgard">
-            <input className="text-black" type="radio" name="midgard" />
-            Midgard
+          <label htmlFor="svartheim">
+            <input className="text-black" type="radio" name="camping" />
+            Svartheim
           </label>
-          <label htmlFor="vanaheim">
-            <input className="text-black" type="radio" name="vanaheim" />
-            Vanaheim
+          <label htmlFor="nilfheim">
+            <input className="text-black" type="radio" name="camping" />
+            Nilfheim
           </label>
-          <label htmlFor="jotunheim">
-            <input className="text-black" type="radio" name="jotunheim" />
-            Jotunheim
+          <label htmlFor="muspelheim">
+            <input className="text-black" type="radio" name="camping" />
+            Muspelheim
+          </label>
+          <label htmlFor="helheim">
+            <input className="text-black" type="radio" name="camping" />
+            Helheim
+          </label>
+          <label htmlFor="alfheim">
+            <input className="text-black" type="radio" name="camping" />
+            Alfheim
           </label>
         </fieldset>
 
@@ -34,15 +42,15 @@ function Camping() {
           </legend>
           <p>INKL. OPSÆTNING AF TELT PÅ PLADSEN</p>
           <label htmlFor="telt2">
-            <input className="text-black" type="radio" name="telt2" />2
-            PERSONERS TELT + 299 DKK
+            <input className="text-black" type="radio" name="telt" />2 PERSONERS
+            TELT + 299 DKK
           </label>
           <label htmlFor="telt3">
-            <input className="text-black" type="radio" name="telt3" />3
-            PERSONERS TELT + 399 DKK
+            <input className="text-black" type="radio" name="telt" />3 PERSONERS
+            TELT + 399 DKK
           </label>
           <label htmlFor="person-telt">
-            <input className="text-black" type="radio" name="person-telt" />
+            <input className="text-black" type="radio" name="telt" />
             TELT TIL ANTAL BILLETTER + 199 DKK PER TELT
           </label>
         </fieldset>
@@ -52,9 +60,9 @@ function Camping() {
           <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
             TILVALG
           </legend>
-          <label htmlFor="telt2">
-            <input className="text-black" type="radio" name="telt2" />2
-            PERSONERS TELT + 299 DKK
+          <label htmlFor="green">
+            <input className="text-black" type="checkbox" name="green" />
+            GREEN CAMPING + 299 DKK
           </label>
         </fieldset>
         <div className="flex justify-end">
