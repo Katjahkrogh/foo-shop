@@ -2,4 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body {
+  background-color: black;
+  max-width: 1000px;
+  margin: auto;
+  color: white;
+}
