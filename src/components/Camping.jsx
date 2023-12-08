@@ -17,6 +17,7 @@ function Camping() {
             <input
               className="text-black"
               type="radio"
+              id="Svartheim"
               value="Svartheim"
               name="camping"
             />
@@ -26,6 +27,7 @@ function Camping() {
             <input
               className="text-black"
               type="radio"
+              id="Nilfheim"
               value="Nilfheim"
               name="camping"
             />
@@ -35,6 +37,7 @@ function Camping() {
             <input
               className="text-black"
               type="radio"
+              id="Muspelheim"
               value="Muspelheim"
               name="camping"
             />
@@ -44,6 +47,7 @@ function Camping() {
             <input
               className="text-black"
               type="radio"
+              id="Helheim"
               value="Helheim"
               name="camping"
             />
@@ -53,6 +57,7 @@ function Camping() {
             <input
               className="text-black"
               type="radio"
+              id="Alfheim"
               value="Alfheim"
               name="camping"
             />
@@ -71,6 +76,7 @@ function Camping() {
               className="text-black"
               type="radio"
               value={299}
+              id="telt2"
               name="telt"
             />
             2 PERSONERS TELT + 299 DKK
@@ -80,6 +86,7 @@ function Camping() {
               className="text-black"
               type="radio"
               value={399}
+              id="telt3"
               name="telt"
             />
             3 PERSONERS TELT + 399 DKK
@@ -89,6 +96,7 @@ function Camping() {
               className="text-black"
               type="radio"
               value={199}
+              id="person-telt"
               name="telt"
             />
             TELT TIL ANTAL BILLETTER + 199 DKK PER TELT
@@ -101,7 +109,12 @@ function Camping() {
             TILVALG
           </legend>
           <label htmlFor="green">
-            <input className="text-black" type="checkbox" name="green" />
+            <input
+              className="text-black"
+              type="checkbox"
+              name="green"
+              id="green"
+            />
             GREEN CAMPING + 299 DKK
           </label>
         </fieldset>
