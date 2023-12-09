@@ -26,7 +26,7 @@ function Basket(props) {
   const subtotal = total - greenCampingTotal - bookingFee;
 
   return (
-    <aside>
+    <aside className="bg-fooGrey-900 m-10 rounded-xl p-20 max-h-96">
       <p>Booking fee {bookingFee} DKK</p>
       <p>Subtotal: {subtotal} DKK</p>
       <p>Total: {total} DKK</p>

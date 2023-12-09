@@ -1,41 +1,43 @@
-import Knap from "./Knap";
+import NextStepBtn from "./NextStepBtn";
 
-function Camping({ campingAreas }) {
+
+function Camping({ campingAreas, setStep }) {
   return (
-    <div className="bg-fooGrey-900 m-10 rounded-xl p-20">
-      <h1 className="text-fooYellow-200 text-3xl">FOOFEST </h1>
-      <p>Mandag d. 10 Juli - Søndag d. 17 Juli 2024</p>
 
-      <form action="" id="camping">
-        <fieldset>
-          <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
-            VÆLG CAMPING OMRÅDE
-          </legend>
-          <p>CAMPING RESEVERTATION 99 DKK</p>
-          <div className="flex flex-wrap gap-6">
-            {campingAreas.map((spot) => (
-              <div key={spot.area}>
-                <input
-                  className="text-black"
-                  type="radio"
-                  id={spot.area}
-                  value={spot.area}
-                  name="camping"
-                />
-                <label htmlFor={spot.area} className="ml-2">
-                  {spot.area}
-                </label>
-                <p>{spot.available} ledige pladser</p>
-              </div>
-            ))}
-          </div>
-        </fieldset>
-        {/* TILKØB TELTE */}
-        <fieldset>
-          <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
-            TILKØB AF TELTE
-          </legend>
-          <p>INKL. OPSÆTNING AF TELT PÅ PLADSEN</p>
+    <fieldset>   
+       <div className="bg-fooGrey-900 m-10 rounded-xl p-20">
+
+      {/* VÆLG CAMPING AREA */}
+      <div>
+        <h2 className="text-fooYellow-200 text-xl mt-4 mb-2">
+          VÆLG CAMPING OMRÅDE
+        </h2>
+        <p>CAMPING RESEVERTATION 99 DKK</p>
+        <div className="flex flex-wrap gap-6 mt-6">
+          {campingAreas.map((spot) => (
+            <div key={spot.area}>
+              <input
+                className="text-black"
+                type="radio"
+                id={spot.area}
+                value={spot.area}
+                name="camping"
+              />
+              <label htmlFor={spot.area} className="ml-2">
+                {spot.area}
+              </label>
+              <p>{spot.available} ledige pladser</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* TILKØB TELTE */}
+      <div>
+        <h2 className="text-fooYellow-200 text-xl mt-4 mb-2">
+          TILKØB AF TELTE
+        </h2>
+        <p>INKL. OPSÆTNING AF TELT PÅ PLADSEN</p>
+        <div className="flex flex-col gap-4 mt-6">
           <label htmlFor="telt2">
             <input
               className="text-black"
@@ -66,27 +68,26 @@ function Camping({ campingAreas }) {
             />
             TELT TIL ANTAL BILLETTER + 199 DKK PER TELT
           </label>
-        </fieldset>
-        {/* GREEN CAMPING */}
-        <fieldset>
-          <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
-            TILVALG
-          </legend>
-          <label htmlFor="green">
-            <input
-              className="text-black"
-              type="checkbox"
-              name="green"
-              id="green"
-            />
-            GREEN CAMPING + 299 DKK
-          </label>
-        </fieldset>
-        <div className="flex justify-end">
-          <Knap id="camping" text="FIND MINE BILLETTER"></Knap>
         </div>
-      </form>
-    </div>
+      </div>
+      {/* GREEN CAMPING */}
+      <div>
+        <h2 className="text-fooYellow-200 text-xl mt-4 mb-2">TILVALG</h2>
+        <label htmlFor="green">
+          <input
+            className="text-black"
+            type="checkbox"
+            name="green"
+            id="green"
+          />
+          GREEN CAMPING + 299 DKK
+        </label>
+      </div>
+      <div className="flex justify-end">
+        <NextStepBtn setStep={setStep} text="FIND MINE BILLETTER"></NextStepBtn>
+      </div>
+      </div>
+    </fieldset>
   );
 }
 

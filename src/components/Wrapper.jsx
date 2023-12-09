@@ -1,13 +1,15 @@
 "use client";
-import Camping from "@/components/Camping";
-import TicketType from "@/components/TicketType";
+import Camping from "./Camping";
+import TicketType from "./TicketType";
+import Info from "./Info";
 import { useState, useRef, useEffect } from "react";
 import Basket from "./Basket";
+import Payment from "./Payment";
 
 function Wrapper() {
   const [step, setStep] = useState(0);
 
-  // GET REQUEST
+  // GET REQUEST - henter ledige billetter til camping
   const [campingAreas, setCampingAreas] = useState([]);
   useEffect(() => {
     fetch("http://localhost:8080/available-spots")
@@ -26,6 +28,7 @@ function Wrapper() {
 
   const [vipAmount, setVipAmount] = useState(0);
   const [ticketAmount, setTicketAmount] = useState(0);
+  const [tickets, setTickets] = useState([]);
 
   const totalAmount = vipAmount + ticketAmount;
 
@@ -39,7 +42,6 @@ function Wrapper() {
 
   const [selectedArea, setSelectedArea] = useState("");
 
-  const [tickets, setTickets] = useState([]);
 
   const [showTickets, setShowTickets] = useState(false);
 
@@ -53,7 +55,7 @@ function Wrapper() {
   const [greenCamping, setGreenCamping] = useState(false);
   const [tentSetup, setTentSetup] = useState(false);
 
-  // PUT REQUEST
+  // PUT REQUEST - sender reservation med amount + area
   async function reserveSpot() {
     let headersList = {
       "Content-Type": "application/json",
@@ -76,7 +78,7 @@ function Wrapper() {
     setTimeValue(booking.timeout);
   }
 
-  // POST REQUEST
+  // POST REQUEST - sender endelig bestilling med reservations ID
   async function submit(e) {
     e.preventDefault();
     let headersList = {
@@ -95,13 +97,28 @@ function Wrapper() {
   }
 
   return (
-    <div className="flex flex-wrap">
-      <form onSubmit={submit}>
-        {step === 0 && <TicketType setStep={setStep} />}
+    <div className="grid grid-cols-3">
+      <form onSubmit={submit} id="bookingForm" className="col-span-2">
+        {step === 0 && (
+          <TicketType
+            setStep={setStep}
+            setVipAmount={setVipAmount}
+            vipAmount={vipAmount}
+            setTicketAmount={setTicketAmount}
+            ticketAmount={ticketAmount}
+            tickets={tickets}
+            setTickets={setTickets}
+          />
+        )}
         {step === 1 && (
           <Camping setStep={setStep} campingAreas={campingAreas} />
         )}
+        {step === 2 && <Info setStep={setStep} campingAreas={campingAreas} />}
+        {step === 3 && (
+          <Payment setStep={setStep} campingAreas={campingAreas} />
+        )}
       </form>
+
       <Basket
         vipAmount={vipAmount}
         ticketAmount={ticketAmount}
