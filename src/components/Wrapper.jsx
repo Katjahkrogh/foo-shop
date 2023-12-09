@@ -22,6 +22,7 @@ function Wrapper() {
   const priceGreenCamping = 249;
   const priceTwoPersonTent = 299;
   const priceThreePersonTent = 399;
+  const priceTicketAmountTent = 199;
 
   const [vipAmount, setVipAmount] = useState(0);
   const [ticketAmount, setTicketAmount] = useState(0);
