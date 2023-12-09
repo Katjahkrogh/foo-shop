@@ -1,6 +1,6 @@
 import Knap from "./Knap";
 
-function Camping({ data }) {
+function Camping({ campingAreas }) {
   return (
     <div className="bg-fooGrey-900 m-10 rounded-xl p-20">
       <h1 className="text-fooYellow-200 text-3xl">FOOFEST </h1>
@@ -13,7 +13,7 @@ function Camping({ data }) {
           </legend>
           <p>CAMPING RESEVERTATION 99 DKK</p>
           <div className="flex flex-wrap gap-6">
-            {data.map((spot) => (
+            {campingAreas.map((spot) => (
               <div key={spot.area}>
                 <input
                   className="text-black"

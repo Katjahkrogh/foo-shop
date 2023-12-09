@@ -1,14 +1,12 @@
 import Wrapper from "@/components/Wrapper";
 
-export default async function Home() {
-  const res = await fetch("http://localhost:8080/available-spots", {
-    method: "GET",
-  });
-  const data = await res.json();
+function Home() {
 
   return (
     <>
-      <Wrapper data={data} />
+      <Wrapper />
     </>
   );
 }
+
+export default Home;
