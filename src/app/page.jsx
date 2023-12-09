@@ -1,13 +1,14 @@
-import Camping from "@/components/Camping";
-import TicketType from "@/components/TicketType";
 import Wrapper from "@/components/Wrapper";
 
-
-export default function Home() {
+export default async function Home() {
+  const res = await fetch("http://localhost:8080/available-spots", {
+    method: "GET",
+  });
+  const data = await res.json();
 
   return (
-  <>
-  <Wrapper />
-  </>
-  )
+    <>
+      <Wrapper data={data} />
+    </>
+  );
 }

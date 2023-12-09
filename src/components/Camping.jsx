@@ -1,70 +1,35 @@
 import Knap from "./Knap";
 
-function Camping() {
+function Camping({ data }) {
   return (
     <div className="bg-fooGrey-900 m-10 rounded-xl p-20">
       <h1 className="text-fooYellow-200 text-3xl">FOOFEST </h1>
       <p>Mandag d. 10 Juli - Søndag d. 17 Juli 2024</p>
 
       <form action="" id="camping">
-        {/* VÆLG CAMPING */}
         <fieldset>
           <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
             VÆLG CAMPING OMRÅDE
           </legend>
           <p>CAMPING RESEVERTATION 99 DKK</p>
-          <label htmlFor="svartheim">
-            <input
-              className="text-black"
-              type="radio"
-              id="Svartheim"
-              value="Svartheim"
-              name="camping"
-            />
-            Svartheim
-          </label>
-          <label htmlFor="nilfheim">
-            <input
-              className="text-black"
-              type="radio"
-              id="Nilfheim"
-              value="Nilfheim"
-              name="camping"
-            />
-            Nilfheim
-          </label>
-          <label htmlFor="muspelheim">
-            <input
-              className="text-black"
-              type="radio"
-              id="Muspelheim"
-              value="Muspelheim"
-              name="camping"
-            />
-            Muspelheim
-          </label>
-          <label htmlFor="helheim">
-            <input
-              className="text-black"
-              type="radio"
-              id="Helheim"
-              value="Helheim"
-              name="camping"
-            />
-            Helheim
-          </label>
-          <label htmlFor="alfheim">
-            <input
-              className="text-black"
-              type="radio"
-              id="Alfheim"
-              value="Alfheim"
-              name="camping"
-            />
-            Alfheim
-          </label>
+          <div className="flex flex-wrap gap-6">
+            {data.map((spot) => (
+              <div key={spot.area}>
+                <input
+                  className="text-black"
+                  type="radio"
+                  id={spot.area}
+                  value={spot.area}
+                  name="camping"
+                />
+                <label htmlFor={spot.area} className="ml-2">
+                  {spot.area}
+                </label>
+                <p>{spot.available} ledige pladser</p>
+              </div>
+            ))}
+          </div>
         </fieldset>
-
         {/* TILKØB TELTE */}
         <fieldset>
           <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
@@ -102,7 +67,6 @@ function Camping() {
             TELT TIL ANTAL BILLETTER + 199 DKK PER TELT
           </label>
         </fieldset>
-
         {/* GREEN CAMPING */}
         <fieldset>
           <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
