@@ -1,6 +1,6 @@
 
 
-function Camping({ campingAreas, totalAmount, setSelectedArea, setStep }) {
+function Camping({ campingAreas, totalAmount, setSelectedArea }) {
   // Funktion til håndtering af ændringer i valgte campingområde
   const handleSelectArea = (event) => {
     const selectedAreaId = event.target.value;
@@ -90,12 +90,6 @@ function Camping({ campingAreas, totalAmount, setSelectedArea, setStep }) {
             />
             GREEN CAMPING + 299 DKK
           </label>
-        </div>
-        <div className="flex justify-end">
-          {/* <NextStepBtn
-            setStep={setStep}
-            text="FIND MINE BILLETTER"
-          ></NextStepBtn> */}
         </div>
       </div>
     </fieldset>
