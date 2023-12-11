@@ -133,7 +133,7 @@ function Wrapper() {
               campingAreas={campingAreas}
               totalAmount={totalAmount}
               setSelectedArea={setSelectedArea}
-              priceGreenCamping={priceGreenCamping}
+              greenCampingPrice={greenCampingPrice}
               greenCamping={greenCamping}
               setGreenCamping={setGreenCamping}
               twoPersonTentPrice={twoPersonTentPrice}
@@ -182,14 +182,14 @@ function Wrapper() {
         ticketAmount={ticketAmount}
         greenCamping={greenCamping}
         setGreenCamping={setGreenCamping}
-        twoPersonTentValue={twoPersonTentValue}
-        threePersonTentValue={threePersonTentValue}
+        twoPersonTentAmount={twoPersonTentAmount}
+        threePersonTentAmount={threePersonTentAmount}
         priceVIP={priceVip}
         totalAmount={totalAmount}
         priceRegular={priceRegular}
-        priceGreenCamping={priceGreenCamping}
-        priceThreePersonTent={priceThreePersonTent}
-        priceTwoPersonTent={priceTwoPersonTent}
+        geenCampingPrice={greenCampingPrice}
+        threePersonTentPrice={threePersonTentPrice}
+        twoPersonTentPrice={twoPersonTentPrice}
         selectedArea={selectedArea}
       />
     </div>
