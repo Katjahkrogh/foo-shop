@@ -1,5 +1,5 @@
 import React from "react";
-import NextStepBtn from "./NextStepBtn";
+
 
 function Info({ setStep }) {
   return (
@@ -49,9 +49,9 @@ function Info({ setStep }) {
             className="border p-2 rounded w-full"
           ></input>
         </div>
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <NextStepBtn setStep={setStep} text="GÅ TIL BETALING"></NextStepBtn>
-        </div>
+        </div> */}
       </fieldset>
     </div>
   );

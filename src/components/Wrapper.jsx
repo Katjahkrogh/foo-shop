@@ -2,12 +2,51 @@
 import Camping from "./Camping";
 import TicketType from "./TicketType";
 import Info from "./Info";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Basket from "./Basket";
 import Payment from "./Payment";
 
 function Wrapper() {
+  // Skift mellem views ud fra steps
   const [step, setStep] = useState(0);
+
+  // priser billetter
+  const priceVip = 1299;
+  const priceRegular = 799;
+
+  // priser camping & tilføjelser
+  const greenCampingPrice = 249;
+  const twoPersonTentPrice = 299;
+  const threePersonTentPrice = 399;
+  const tatPrice = 199;
+
+  let totalTentPrice = twoPersonTentPrice + threePersonTentPrice;
+
+  // Camping område valgt
+  const [selectedArea, setSelectedArea] = useState("");
+
+  // let tatTotalPrice = tatPrice * totalAmount; sæt dette ned i kruven
+
+  // antal telt tilføjelser
+  const [twoPersonTentAmount, setTwoPersonTentAmount] = useState(0);
+  const [threePersonTentAmount, setThreePersonTentAmount] = useState(0);
+  const [greenCamping, setGreenCamping] = useState(false);
+
+  // antal billetter
+  const [ticketAmount, setTicketAmount] = useState(0);
+  const [vipAmount, setVipAmount] = useState(0);
+  const [tickets, setTickets] = useState([]);
+
+  // skal det være let eller const??
+  let totalAmount = vipAmount + ticketAmount;
+
+  // sætter ID fra resevationen
+  const [reservationId, setReservationId] = useState("");
+
+  // sætter tiden fra reservationen
+  const [counter, setCounter] = useState(null);
+
+
 
   // GET REQUEST - henter ledige billetter til camping
   const [campingAreas, setCampingAreas] = useState([]);
@@ -18,44 +57,6 @@ function Wrapper() {
         setCampingAreas(data);
       });
   }, []);
-// priser
-  const priceVip = 1299;
-  const priceRegular = 799;
-  const priceGreenCamping = 249;
-  const priceTwoPersonTent = 299;
-  const priceThreePersonTent = 399;
-  const priceTicketAmountTent = 199;
-
-  const [vipAmount, setVipAmount] = useState(0);
-  const [ticketAmount, setTicketAmount] = useState(0);
-  const [tickets, setTickets] = useState([]);
-
-// skal det være let eller const??
-  let totalAmount = vipAmount + ticketAmount;
-
-  const [twoPersonTentValue, setTwoPersonTentValue] = useState(0);
-  const [threePersonTentValue, setThreePersonTentValue] = useState(0);
-
-  let totalTentValue = twoPersonTentValue + threePersonTentValue;
-
-  const [showAvailableAreas, setShowAvailableAreas] = useState(false);
-  const [showAttendeeInput, setShowAttendeeInput] = useState(false);
-
-
-  const [selectedArea, setSelectedArea] = useState("");
-
-
-  const [showTickets, setShowTickets] = useState(false);
-
-  const [reservationID, setReservationID] = useState("");
-
-  const [timeValue, setTimeValue] = useState(null);
-
-  const [showError, setShowError] = useState(false);
-  const [showExtras, setShowExtras] = useState(false);
-
-  const [greenCamping, setGreenCamping] = useState(false);
-  const [tentSetup, setTentSetup] = useState(false);
 
   // PUT REQUEST - sender reservation med amount + area
   async function reserveSpot() {
@@ -66,7 +67,6 @@ function Wrapper() {
     let bodyContent = JSON.stringify({
       area: selectedArea,
       amount: totalAmount,
-      purchase: [showTickets],
     });
 
     let response = await fetch("http://localhost:8080/reserve-spot", {
@@ -76,8 +76,10 @@ function Wrapper() {
     });
 
     let booking = await response.json();
-    setReservationID(booking.id);
-    setTimeValue(booking.timeout);
+    setReservationId(booking.id);
+    setCounter(booking.timeout);
+
+    console.log(booking);
   }
 
   // POST REQUEST - sender endelig bestilling med reservations ID
@@ -102,36 +104,76 @@ function Wrapper() {
     <div className="grid grid-cols-3">
       <form onSubmit={submit} id="bookingForm" className="col-span-2">
         {step === 0 && (
-          <TicketType
-            setStep={setStep}
-            setVipAmount={setVipAmount}
-            vipAmount={vipAmount}
-            setTicketAmount={setTicketAmount}
-            ticketAmount={ticketAmount}
-            tickets={tickets}
-            setTickets={setTickets}
-            priceRegular={priceRegular}
-            priceVip={priceVip}
-          />
+          <div>
+            <TicketType
+              setStep={setStep}
+              setVipAmount={setVipAmount}
+              vipAmount={vipAmount}
+              setTicketAmount={setTicketAmount}
+              ticketAmount={ticketAmount}
+              tickets={tickets}
+              setTickets={setTickets}
+              priceRegular={priceRegular}
+              priceVip={priceVip}
+            />
+            <button
+              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+              onClick={() => {
+                setStep((prevStep) => prevStep + 1);
+              }}
+            >
+              GÅ
+            </button>
+          </div>
         )}
         {step === 1 && (
-          <Camping
-            setStep={setStep}
-            campingAreas={campingAreas}
-            totalAmount={totalAmount}
-            setSelectedArea={setSelectedArea}
-            priceGreenCamping={priceGreenCamping}
-            priceThreePersonTent={priceThreePersonTent}
-            priceTwoPersonTent={priceTwoPersonTent}
-            greenCamping={greenCamping}
-            setGreenCamping={setGreenCamping}
-            twoPersonTentValue={twoPersonTentValue}
-            threePersonTentValue={threePersonTentValue}
-          />
+          <div>
+            <Camping
+              setStep={setStep}
+              campingAreas={campingAreas}
+              totalAmount={totalAmount}
+              setSelectedArea={setSelectedArea}
+              priceGreenCamping={priceGreenCamping}
+              greenCamping={greenCamping}
+              setGreenCamping={setGreenCamping}
+              twoPersonTentPrice={twoPersonTentPrice}
+              threePersonTentPrice={threePersonTentPrice}
+            />
+            <button
+              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+              onClick={() => {
+                setStep((prevStep) => prevStep + 1);
+                reserveSpot();
+              }}
+            >
+              RESEVER
+            </button>
+          </div>
         )}
-        {step === 2 && <Info setStep={setStep} campingAreas={campingAreas} />}
+        {step === 2 && (
+          <div>
+            <Info setStep={setStep} campingAreas={campingAreas} />
+            <button
+              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+              onClick={() => {
+                setStep((prevStep) => prevStep + 1);
+              }}
+            >
+              GÅ
+            </button>
+          </div>
+        )}
         {step === 3 && (
-          <Payment setStep={setStep} campingAreas={campingAreas} />
+          <div>
+            <Payment setStep={setStep} campingAreas={campingAreas} />
+            <button
+              type="submit"
+              id="bookingForm"
+              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+            >
+              SUBMIT
+            </button>
+          </div>
         )}
       </form>
 
@@ -143,6 +185,7 @@ function Wrapper() {
         twoPersonTentValue={twoPersonTentValue}
         threePersonTentValue={threePersonTentValue}
         priceVIP={priceVip}
+        totalAmount={totalAmount}
         priceRegular={priceRegular}
         priceGreenCamping={priceGreenCamping}
         priceThreePersonTent={priceThreePersonTent}

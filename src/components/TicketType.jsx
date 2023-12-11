@@ -1,4 +1,3 @@
-import NextStepBtn from "./NextStepBtn";
 
 function TicketType({
   setStep, // funktion til at opdatere trin i bookingprocessen
@@ -6,9 +5,9 @@ function TicketType({
   vipAmount, // tilstand for antal VIP-billetter
   setTicketAmount, // funktion til at opdatere antal "foo-billetter"
   ticketAmount, // tilstand for antal "foo-billetter"
-  setTickets,
+  setTickets, // funktion til at opdatere billetlisten
   priceVip,
-  priceRegular // funktion til at opdatere billetlisten
+  priceRegular 
 }) {
   const totalTicketAmount = ticketAmount; // Total antal "foo-billetter"
   const totalVipAmount = vipAmount; // Total antal VIP-billetter
@@ -180,12 +179,12 @@ function TicketType({
         </div>
 
         {/* gå til nyt step */}
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <NextStepBtn
             setStep={setStep}
             text="FIND MINE BILLETTER"
           ></NextStepBtn>
-        </div>
+        </div> */}
       </div>
     </fieldset>
   );

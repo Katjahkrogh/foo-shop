@@ -1,4 +1,4 @@
-import NextStepBtn from "./NextStepBtn";
+
 
 function Camping({ campingAreas, totalAmount, setSelectedArea, setStep }) {
   // Funktion til håndtering af ændringer i valgte campingområde
@@ -92,10 +92,10 @@ function Camping({ campingAreas, totalAmount, setSelectedArea, setStep }) {
           </label>
         </div>
         <div className="flex justify-end">
-          <NextStepBtn
+          {/* <NextStepBtn
             setStep={setStep}
             text="FIND MINE BILLETTER"
-          ></NextStepBtn>
+          ></NextStepBtn> */}
         </div>
       </div>
     </fieldset>

@@ -26,8 +26,8 @@ function Basket(props) {
   const subtotal = total - greenCampingTotal - bookingFee;
 
   return (
-    <aside className="bg-fooGrey-900 m-10 rounded-xl p-20 max-h-96">
-      <p>BILLETTYPE: {props.ticket}</p>
+    <aside className="bg-fooGrey-900 m-10 rounded-xl p-20 max-h-96 flex flex-col gap-4">
+      <p>ANTAL BILLETTER: {props.totalAmount}</p>
       <p>CAMPING OMRÅDE: {props.selectedArea}</p>
       <p>Booking gebyr: {bookingFee} DKK</p>
       <p>Billetpris: {subtotal} DKK</p>
