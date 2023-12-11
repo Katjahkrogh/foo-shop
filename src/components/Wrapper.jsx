@@ -18,7 +18,7 @@ function Wrapper() {
         setCampingAreas(data);
       });
   }, []);
-
+// priser
   const priceVip = 1299;
   const priceRegular = 799;
   const priceGreenCamping = 249;
@@ -29,7 +29,7 @@ function Wrapper() {
   const [vipAmount, setVipAmount] = useState(0);
   const [ticketAmount, setTicketAmount] = useState(0);
   const [tickets, setTickets] = useState([]);
-  
+
 // skal det være let eller const??
   let totalAmount = vipAmount + ticketAmount;
 
@@ -40,6 +40,7 @@ function Wrapper() {
 
   const [showAvailableAreas, setShowAvailableAreas] = useState(false);
   const [showAttendeeInput, setShowAttendeeInput] = useState(false);
+
 
   const [selectedArea, setSelectedArea] = useState("");
 
@@ -118,6 +119,14 @@ function Wrapper() {
             setStep={setStep}
             campingAreas={campingAreas}
             totalAmount={totalAmount}
+            selectedArea={selectedArea}
+            priceGreenCamping={priceGreenCamping}
+            priceThreePersonTent={priceThreePersonTent}
+            priceTwoPersonTent={priceTwoPersonTent}
+            greenCamping={greenCamping}
+            setGreenCamping={setGreenCamping}
+            twoPersonTentValue={twoPersonTentValue}
+            threePersonTentValue={threePersonTentValue}
           />
         )}
         {step === 2 && <Info setStep={setStep} campingAreas={campingAreas} />}
