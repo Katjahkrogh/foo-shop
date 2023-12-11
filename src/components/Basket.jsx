@@ -1,14 +1,18 @@
 import React from "react";
 
 function Basket(props) {
-  const vipTotal = props.vipAmount * props.priceVIP;
-  const regularTotal = props.ticketAmount * props.priceRegular;
-  let greenCampingTotal = props.priceGreenCamping;
-  const twoPersonTentTotal =
-    props.twoPersonTentValue * props.priceTwoPersonTent;
-  const threePersonTentTotal =
-    props.threePersonTentValue * props.priceThreePersonTent;
+  let vipTotal = props.vipAmount * props.priceVIP;
+  let regularTotal = props.ticketAmount * props.priceRegular;
+  let twoPersonTentTotal =
+    props.twoPersonTentAmount * props.twoPersonTentPrice;
+  let threePersonTentTotal =
+    props.threePersonTentAmount * props.threePersonTentPrice;
+    
   const bookingFee = 99;
+
+  // sætter GreenCampingTotal til at være greenCampingPrice, hvis greenCamping er true, hvis den er false sætter prisen til 0.
+
+  let greenCampingTotal = props.greenCampingPrice
 
   if (props.greenCamping === true) {
     greenCampingTotal = props.priceGreenCamping;
@@ -19,7 +23,7 @@ function Basket(props) {
   const total =
     vipTotal +
     regularTotal +
-    greenCampingTotal +
+    greenCampingTotal+
     twoPersonTentTotal +
     threePersonTentTotal +
     bookingFee;
