@@ -27,9 +27,11 @@ function Basket(props) {
 
   return (
     <aside className="bg-fooGrey-900 m-10 rounded-xl p-20 max-h-96">
-      <p>Booking fee {bookingFee} DKK</p>
-      <p>Subtotal: {subtotal} DKK</p>
-      <p>Total: {total} DKK</p>
+      <p>BILLETTYPE: {props.ticket}</p>
+      <p>CAMPING OMRÅDE: {props.selectedArea}</p>
+      <p>Booking gebyr: {bookingFee} DKK</p>
+      <p>Billetpris: {subtotal} DKK</p>
+      <p>I alt: {total} DKK</p>
     </aside>
   );
 }

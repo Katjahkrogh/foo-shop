@@ -147,6 +147,7 @@ function Wrapper() {
         priceGreenCamping={priceGreenCamping}
         priceThreePersonTent={priceThreePersonTent}
         priceTwoPersonTent={priceTwoPersonTent}
+        selectedArea={selectedArea}
       />
     </div>
   );

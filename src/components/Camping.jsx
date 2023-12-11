@@ -1,6 +1,6 @@
 import NextStepBtn from "./NextStepBtn";
 
-function Camping({ campingAreas, totalAmount, setSelectedArea }) {
+function Camping({ campingAreas, totalAmount, setSelectedArea, setStep }) {
   // Funktion til håndtering af ændringer i valgte campingområde
   const handleSelectArea = (event) => {
     const selectedAreaId = event.target.value;
