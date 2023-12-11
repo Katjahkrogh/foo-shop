@@ -46,8 +46,6 @@ function Wrapper() {
   // sætter tiden fra reservationen
   const [counter, setCounter] = useState(null);
 
-
-
   // GET REQUEST - henter ledige billetter til camping
   const [campingAreas, setCampingAreas] = useState([]);
   useEffect(() => {
@@ -187,10 +185,11 @@ function Wrapper() {
         priceVIP={priceVip}
         totalAmount={totalAmount}
         priceRegular={priceRegular}
-        geenCampingPrice={greenCampingPrice}
+        greenCampingPrice={greenCampingPrice}
         threePersonTentPrice={threePersonTentPrice}
         twoPersonTentPrice={twoPersonTentPrice}
         selectedArea={selectedArea}
+        tatPrice={tatPrice}
       />
     </div>
   );
