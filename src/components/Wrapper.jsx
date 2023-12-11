@@ -5,6 +5,8 @@ import Info from "./Info";
 import { useState, useEffect } from "react";
 import Basket from "./Basket";
 import Payment from "./Payment";
+import EndPage from "./EndPage";
+import FinalOverview from "./FinalOverview";
 
 function Wrapper() {
   // Skift mellem views ud fra steps
@@ -83,7 +85,7 @@ function Wrapper() {
     let headersList = {
       "Content-Type": "application/json",
     };
-    let bodyContent = JSON.stringify({ id: reservationID });
+    let bodyContent = JSON.stringify({ id: reservationId });
 
     let response = await fetch("http://localhost:8080/fullfill-reservation", {
       method: "POST",
@@ -162,6 +164,19 @@ function Wrapper() {
           <div>
             <Payment setStep={setStep} campingAreas={campingAreas} />
             <button
+              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+              onClick={() => {
+                setStep((prevStep) => prevStep + 1);
+              }}
+            >
+              GÅ
+            </button>
+          </div>
+        )}
+        {step === 4 && (
+          <div>
+            <FinalOverview />
+            <button
               type="submit"
               id="bookingForm"
               className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
@@ -171,6 +186,8 @@ function Wrapper() {
           </div>
         )}
       </form>
+      
+      {step === 5 && <EndPage />}
 
       <Basket
         vipAmount={vipAmount}
