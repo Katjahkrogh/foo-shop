@@ -2,7 +2,7 @@ function Camping(props) {
   // Funktion til håndtering af ændringer i valgte campingområde
   const handleSelectArea = (event) => {
     const selectedAreaId = event.target.value;
-    setSelectedArea(selectedAreaId);
+    props.setSelectedArea(selectedAreaId);
   };
 
   return (
@@ -48,6 +48,7 @@ function Camping(props) {
                 type="number"
                 id="telt2"
                 name="telt"
+                min={0}
               />
               2 PERSONERS TELT + {props.twoPersonTentPrice} DKK
             </label>
@@ -57,6 +58,7 @@ function Camping(props) {
                 type="number"
                 id="telt3"
                 name="telt"
+                min={0}
               />
               3 PERSONERS TELT + {props.threePersonTentPrice} DKK
             </label>
