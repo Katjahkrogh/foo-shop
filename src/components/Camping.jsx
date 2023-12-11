@@ -9,11 +9,10 @@ function Camping(props) {
   const totalThreeTentAmount = props.threePersonTentAmount;
 
   return (
-    <fieldset>
-      <div className="bg-fooGrey-900 m-10 rounded-xl p-20">
+    <fieldset className="m-10 p-10">
         {/* VÆLG CAMPING AREA */}
         <div>
-          <h2 className="text-fooYellow-200 text-xl mt-4 mb-2">
+          <h2 className="text-fooYellow-200 text-xl mb-2">
             VÆLG CAMPING OMRÅDE
           </h2>
           <p>CAMPING RESEVERTATION 99 DKK</p>
@@ -127,7 +126,9 @@ function Camping(props) {
                 aria-label={`Fjern 1x 3-personers telt`}
                 onClick={() => {
                   if (props.threePersonTentAmount > 0) {
-                    props.setThreePersonTentAmount(props.threePersonTentAmount - 1);
+                    props.setThreePersonTentAmount(
+                      props.threePersonTentAmount - 1
+                    );
                     props.setTickets((obj) => {
                       const removeFromBasket = obj.findIndex(
                         (tent) => tent.price === props.threePersonTentPrice
@@ -210,7 +211,6 @@ function Camping(props) {
             GREEN CAMPING + 299 DKK
           </label>
         </div>
-      </div>
     </fieldset>
   );
 }

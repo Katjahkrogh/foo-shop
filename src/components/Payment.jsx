@@ -1,77 +1,140 @@
+import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { useState } from "react";
 import Cards from "react-credit-cards-2";
 
-
-const Payment = () => {
-  const [state, setState] = useState({
+function Payment() {
+  const [cardInfo, setCardInfo] = useState({
     number: "",
     expiry: "",
     cvc: "",
     name: "",
-    focus: "",
+    errors: {},
   });
 
-  const handleInputChange = (evt) => {
-    const { name, value } = evt.target;
-
-    setState((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (e) => {
+    setCardInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleInputFocus = (evt) => {
-    setState((prev) => ({ ...prev, focus: evt.target.name }));
+    setCardInfo((prev) => ({ ...prev, focus: evt.target.name }));
+  };
+
+  // Input card expiry onKeyUp handler
+  const handleCardExpiry = (e) => {
+    let expiryDate = e.target.value;
+
+    if (e.keyCode !== 8) {
+      if (expiryDate > 1 && expiryDate.length === 1) {
+        expiryDate = "0" + expiryDate + "/";
+      } else if (expiryDate.length === 2) {
+        expiryDate = expiryDate + "/";
+      }
+
+      setCardInfo({ ...cardInfo, expiry: expiryDate });
+    } else {
+      setCardInfo({ ...cardInfo, expiry: "" });
+    }
+  };
+
+  // Input onKeyDown numbers only handler
+  const handleNumbersOnly = (e) => {
+    let flag;
+
+    if (
+      e.keyCode === 8 ||
+      e.keyCode === 9 ||
+      (e.keyCode === 16 && e.keyCode >= 9) ||
+      e.keyCode === 37 ||
+      e.keyCode === 39 ||
+      e.keyCode === 46 ||
+      (e.keyCode >= 48 && e.keyCode <= 57) ||
+      (e.keyCode >= 96 && e.keyCode <= 105)
+    ) {
+      flag = false;
+    } else {
+      flag = true;
+    }
+
+    if (flag) {
+      e.preventDefault();
+    }
   };
 
   return (
-    <div>
-      <Cards
-        number={state.number}
-        expiry={state.expiry}
-        cvc={state.cvc}
-        name={state.name}
-        focused={state.focus}
-      />
+    <fieldset>
+      <h2 className="text-fooYellow-200 text-xl mb-2">BETALINGSOPLYSNINGER</h2>
+      <div className="flex flex-col md:flex-row gap-4 m-10 p-10">
+        <div>
+          <Cards
+            number={cardInfo.number}
+            expiry={cardInfo.expiry}
+            cvc={cardInfo.cvc}
+            name={cardInfo.name}
+            focused={cardInfo.focus}
+          />
+        </div>
+        <div className="flex flex-wrap gap-4">
+          <label htmlFor="number">
+            <input
+              className="text-black border p-2 rounded w-full "
+              unique="cardNumber"
+              placeholder="Card number"
+              maxLength="16"
+              name="number"
+              required
+              value={cardInfo.number}
+              onKeyDown={handleNumbersOnly}
+              onChange={handleChange}
+              onFocus={handleInputFocus}
+            />
+          </label>
 
-      <form>
-        <input
-          type="number"
-          name="number"
-          placeholder="Kortnummer"
-          required
-          value={state.number}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-        />
-        <input
-          type="text"
-          name="name"
-          placeholder="Kortholder navn"
-          required
-          value={state.name}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-        />
-        <input
-          type="date"
-          name="udløb"
-          placeholder="Gyldig til:"
-          required
-          value={state.expiry}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-        />
-        <input
-          type="number"
-          name="cvc"
-          placeholder="CVC"
-          required
-          pattern="\d{3,4}"
-          value={state.cvc}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-        />
-      </form>
-    </div>
+          <label htmlFor="name">
+            <input
+              className="text-black border p-2 rounded w-full"
+              type="text"
+              placeholder="Cardholder name"
+              name="name"
+              required
+              value={cardInfo.name}
+              onChange={handleChange}
+              onFocus={handleInputFocus}
+            />
+          </label>
+          <div className="flex gap-4">
+            <label htmlFor="expiry">
+              <input
+                className="text-black border p-2 rounded w-full"
+                unique="cardExpiry"
+                placeholder="MM/YY"
+                maxLength="5"
+                name="expiry"
+                required
+                value={cardInfo.expiry}
+                onKeyDown={handleNumbersOnly}
+                onKeyUp={handleCardExpiry}
+                onChange={handleChange}
+                onFocus={handleInputFocus}
+              />
+            </label>
+            <label htmlFor="cvc">
+              <input
+                className="text-black border p-2 rounded w-full"
+                unique="cardCvc"
+                placeholder="CVC"
+                maxLength="4"
+                name="cvc"
+                required
+                value={cardInfo.cvc}
+                onChange={handleChange}
+                onFocus={handleInputFocus}
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
   );
-};
+}
 
 export default Payment;

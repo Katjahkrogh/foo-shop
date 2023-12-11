@@ -13,9 +13,8 @@ function TicketType({
   const totalVipAmount = vipAmount; // Total antal VIP-billetter
 
   return (
-    <fieldset>
-      <div className="bg-fooGrey-900 m-10 rounded-xl p-20">
-        <h1 className="text-fooYellow-200 text-3xl">FOOFEST </h1>
+    <fieldset className="m-10 p-10">
+        <h2 className="text-fooYellow-200 text-3xl">FOOFEST </h2>
         <p>Mandag d. 10 Juli - Søndag d. 17 Juli 2024</p>
         <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
           VÆLG DINE BILLETTER
@@ -41,7 +40,9 @@ function TicketType({
                       (ticket) => ticket.price === priceRegular
                     );
                     if (removeFromBasket !== -1) {
-                      return obj.filter((_, index) => index !== removeFromBasket);
+                      return obj.filter(
+                        (_, index) => index !== removeFromBasket
+                      );
                     } else {
                       return obj;
                     }
@@ -120,7 +121,9 @@ function TicketType({
                       (ticket) => ticket.price === priceVip
                     );
                     if (removeFromBasket !== -1) {
-                      return obj.filter((_, index) => index !== removeFromBasket);
+                      return obj.filter(
+                        (_, index) => index !== removeFromBasket
+                      );
                     } else {
                       return obj;
                     }
@@ -187,7 +190,6 @@ function TicketType({
             text="FIND MINE BILLETTER"
           ></NextStepBtn>
         </div> */}
-      </div>
     </fieldset>
   );
 }
