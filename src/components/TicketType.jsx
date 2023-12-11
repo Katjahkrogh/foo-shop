@@ -29,7 +29,7 @@ function TicketType({
           </div>
 
           <label className="flex items-center" htmlFor="foo-billet">
-            {/* FJERN 1 "foo-billet"  */}
+            {/* FJERN 1 FOO-BILLET  */}
             <button
               type="button"
               aria-label={`Fjern 1 foo-billet`}
@@ -62,16 +62,17 @@ function TicketType({
               </svg>
             </button>
 
-            {/* Antalsinput for "foo-billetter" */}
+            {/* INPUT FOO-BILLET */}
             <input
               className="text-black mx-4 appearance-none border p-2 rounded w-20"
               type="number"
               min={0}
-              name="foo-billet"
+              name="billet"
+              id="foo-billet"
               value={totalTicketAmount}
             />
 
-            {/* TILFØJ 1 "foo-billet"  */}
+            {/* TILFØJ 1 FOO-BILLet */}
             <button
               type="button"
               aria-label={`Tilføj 1 foo-billet`}
@@ -140,11 +141,12 @@ function TicketType({
               </svg>
             </button>
 
-            {/* Antalsinput for VIP-billetter */}
+            {/* INPUT VIP */}
             <input
               className="text-black mx-4 appearance-none border p-2 rounded w-20"
               type="number"
-              name="vip-billet"
+              name="billet"
+              id="vip-billet"
               min={0}
               value={totalVipAmount}
             />

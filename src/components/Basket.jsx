@@ -29,15 +29,49 @@ function Basket(props) {
   const subtotal = total - greenCampingTotal - bookingFee;
 
   return (
-    <aside className="bg-fooGrey-900 m-10 rounded-xl p-20 max-h-96 flex flex-col gap-4 min-w-max">
+    <aside className="bg-fooGrey-900 m-10 rounded-xl p-10 max-h-96 flex flex-col gap-4 min-w-max">
+      <h3>BILLETTER</h3>
       {props.ticketAmount > 0 && (
-        <p>ANTAL FOO-BILLETTER: {props.ticketAmount}</p>
+        <div className="flex justify-between">
+          <p>FOO-BILLET x{props.ticketAmount} </p> <p>{props.priceRegular} DKK</p>
+        </div>
       )}
-      {props.vipAmount > 0 && <p>ANTAL VIP-BILLETTER: {props.vipAmount}</p>}
-      {props.selectedArea && <p>CAMPING OMRÅDE: {props.selectedArea}</p>}
-      <p>Booking gebyr: {bookingFee} DKK</p>
-      <p>Billetpris: {subtotal} DKK</p>
-      <p>I alt: {total} DKK</p>
+      {props.vipAmount > 0 && (
+        <div className="flex justify-between">
+          <p>VIP-BILLET x{props.vipAmount} </p> <p>{props.priceVIP} DKK</p>
+        </div>
+      )}
+
+      {props.selectedArea && (
+        <div>
+          <h3>CAMPING OMRÅDE</h3> <p>{props.selectedArea}</p>
+        </div>
+      )}
+
+      <h3>OVERSIGT</h3>
+      {props.twoPersonTentAmount > 0 && (
+        <div className="flex justify-between text-sm">
+          <p> + 2 personers telt</p>
+          <p>{props.twoPersonTentPrice} DKK</p>
+        </div>
+      )}
+      {props.threePersonTentAmount > 0 && (
+        <div className="flex justify-between text-sm ">
+          <p> + 3 personers telt</p>
+          <p>{props.threePersonTentPrice} DKK</p>
+        </div>
+      )}
+      <div className="flex justify-between text-sm ">
+        <p>Booking gebyr</p> <p>{bookingFee} DKK</p>
+      </div>
+      <div className="flex justify-between text-sm">
+        {" "}
+        <p>Billetter </p> <p> {subtotal} DKK</p>
+      </div>
+      <div className="flex justify-between text-xl">
+        {" "}
+        <p>I alt</p> <p>{total} DKK</p>
+      </div>
     </aside>
   );
 }

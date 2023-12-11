@@ -131,6 +131,7 @@ function Wrapper() {
               setStep={setStep}
               campingAreas={campingAreas}
               totalAmount={totalAmount}
+              setTickets={setTickets}
               setSelectedArea={setSelectedArea}
               greenCampingPrice={greenCampingPrice}
               greenCamping={greenCamping}
