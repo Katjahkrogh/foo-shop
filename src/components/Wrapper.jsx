@@ -29,13 +29,14 @@ function Wrapper() {
   const [vipAmount, setVipAmount] = useState(0);
   const [ticketAmount, setTicketAmount] = useState(0);
   const [tickets, setTickets] = useState([]);
-
-  const totalAmount = vipAmount + ticketAmount;
+  
+// skal det være let eller const??
+  let totalAmount = vipAmount + ticketAmount;
 
   const [twoPersonTentValue, setTwoPersonTentValue] = useState(0);
   const [threePersonTentValue, setThreePersonTentValue] = useState(0);
 
-  const totalTentValue = twoPersonTentValue + threePersonTentValue;
+  let totalTentValue = twoPersonTentValue + threePersonTentValue;
 
   const [showAvailableAreas, setShowAvailableAreas] = useState(false);
   const [showAttendeeInput, setShowAttendeeInput] = useState(false);
@@ -108,10 +109,16 @@ function Wrapper() {
             ticketAmount={ticketAmount}
             tickets={tickets}
             setTickets={setTickets}
+            priceRegular={priceRegular}
+            priceVip={priceVip}
           />
         )}
         {step === 1 && (
-          <Camping setStep={setStep} campingAreas={campingAreas} />
+          <Camping
+            setStep={setStep}
+            campingAreas={campingAreas}
+            totalAmount={totalAmount}
+          />
         )}
         {step === 2 && <Info setStep={setStep} campingAreas={campingAreas} />}
         {step === 3 && (

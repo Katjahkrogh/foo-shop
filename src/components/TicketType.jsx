@@ -6,13 +6,12 @@ function TicketType({
   vipAmount, // tilstand for antal VIP-billetter
   setTicketAmount, // funktion til at opdatere antal "foo-billetter"
   ticketAmount, // tilstand for antal "foo-billetter"
-  setTickets, // funktion til at opdatere billetlisten
+  setTickets,
+  priceVip,
+  priceRegular // funktion til at opdatere billetlisten
 }) {
   const totalTicketAmount = ticketAmount; // Total antal "foo-billetter"
   const totalVipAmount = vipAmount; // Total antal VIP-billetter
-
-  const priceVip = 1299; // Pris for VIP-billet
-  const priceRegular = 799; // Pris for "foo-billet"
 
   return (
     <fieldset>
@@ -38,14 +37,14 @@ function TicketType({
               onClick={() => {
                 if (ticketAmount > 0) {
                   setTicketAmount(ticketAmount - 1);
-                  setTickets((o) => {
-                    const removeFromBasket = o.findIndex(
+                  setTickets((obj) => {
+                    const removeFromBasket = obj.findIndex(
                       (ticket) => ticket.price === priceRegular
                     );
                     if (removeFromBasket !== -1) {
-                      return o.filter((_, index) => index !== removeFromBasket);
+                      return obj.filter((_, index) => index !== removeFromBasket);
                     } else {
-                      return o;
+                      return obj;
                     }
                   });
                 }
@@ -79,10 +78,10 @@ function TicketType({
               aria-label={`Tilføj 1 foo-billet`}
               onClick={() => {
                 setTicketAmount(ticketAmount + 1);
-                setTickets((o) =>
-                  o.concat({
+                setTickets((obj) =>
+                  obj.concat({
                     ticketName: "FOO-billet",
-                    id: o.length,
+                    id: obj.length,
                     price: priceRegular,
                   })
                 );
@@ -116,14 +115,14 @@ function TicketType({
               onClick={() => {
                 if (vipAmount > 0) {
                   setVipAmount(vipAmount - 1);
-                  setTickets((o) => {
-                    const removeFromBasket = o.findIndex(
+                  setTickets((obj) => {
+                    const removeFromBasket = obj.findIndex(
                       (ticket) => ticket.price === priceVip
                     );
                     if (removeFromBasket !== -1) {
-                      return o.filter((_, index) => index !== removeFromBasket);
+                      return obj.filter((_, index) => index !== removeFromBasket);
                     } else {
-                      return o;
+                      return obj;
                     }
                   });
                 }
@@ -157,10 +156,10 @@ function TicketType({
               aria-label={`Tilføj 1 VIP-billet`}
               onClick={() => {
                 setVipAmount(vipAmount + 1);
-                setTickets((o) =>
-                  o.concat({
+                setTickets((obj) =>
+                  obj.concat({
                     ticketName: "VIP-billet",
-                    id: o.length,
+                    id: obj.length,
                     price: priceVip,
                   })
                 );
