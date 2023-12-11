@@ -121,7 +121,7 @@ function Wrapper() {
                 setStep((prevStep) => prevStep + 1);
               }}
             >
-              GÅ
+              VÆLG CAMPING
             </button>
           </div>
         )}
@@ -150,20 +150,20 @@ function Wrapper() {
                 reserveSpot();
               }}
             >
-              RESEVER
+              FIND MINE BILLETTER
             </button>
           </div>
         )}
         {step === 2 && (
           <div>
-            <Info setStep={setStep} campingAreas={campingAreas} />
+            <Info setStep={setStep} campingAreas={campingAreas} tickets={tickets} />
             <button
               className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
               onClick={() => {
                 setStep((prevStep) => prevStep + 1);
               }}
             >
-              GÅ
+              VÆLG BETALING
             </button>
           </div>
         )}
@@ -176,7 +176,7 @@ function Wrapper() {
                 setStep((prevStep) => prevStep + 1);
               }}
             >
-              GÅ
+              SE OVERBLIK OG BETAL
             </button>
           </div>
         )}
@@ -188,7 +188,7 @@ function Wrapper() {
               id="bookingForm"
               className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
             >
-              SUBMIT
+              BETAL (submit)
             </button>
           </div>
         )}

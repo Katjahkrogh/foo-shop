@@ -3,7 +3,8 @@ import React from "react";
 function Info({ tickets, totalAmount }) {
   return (
     <fieldset>
-      <div class="container mx-auto bg-fooGrey-900 shadow rounded-lg p-6">
+      {tickets.map((ticket) => (
+              <div class="container mx-auto bg-fooGrey-900 shadow rounded-lg p-6" key={1}>
         <h2 className="text-fooYellow-200 text-xl mt-4 mb-2">
           UDFYLD INFORMATION
         </h2>
@@ -49,6 +50,8 @@ function Info({ tickets, totalAmount }) {
           </label>
         </div>
       </div>
+        ))}
+
     </fieldset>
   );
 }
