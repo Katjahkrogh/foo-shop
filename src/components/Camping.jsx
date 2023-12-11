@@ -42,19 +42,84 @@ function Camping(props) {
           </h2>
           <p>INKL. OPSÆTNING AF TELT PÅ PLADSEN</p>
           <div className="flex flex-col gap-4 mt-6">
-            <label htmlFor="telt2">
+            <label htmlFor="telt2" className="flex justify-between">
+              <div> 2 PERSONERS TELT + {props.twoPersonTentPrice} DKK </div>
+
+              {/* FJERN 2 personers telt */}
+              <button
+                type="button"
+                aria-label={`Fjern 1x 2-personers telt`}
+                onClick={() => {
+                  if (props.twoPersonTentAmount > 0) {
+                    props.setTwoPersonTentAmount(twoPersonTentAmount - 1);
+                    setTickets((obj) => {
+                      const removeFromBasket = obj.findIndex(
+                        (ticket) => ticket.price === priceRegular
+                      );
+                      if (removeFromBasket !== -1) {
+                        return obj.filter(
+                          (_, index) => index !== removeFromBasket
+                        );
+                      } else {
+                        return obj;
+                      }
+                    });
+                  }
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  fill="currentColor"
+                  class="bi bi-dash-circle"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                </svg>
+              </button>
+
+              {/* INPUT TELT-2 */}
               <input
-                className="text-black"
+                className="text-black mx-4 appearance-none border p-2 rounded w-20"
                 type="number"
                 id="telt2"
                 name="telt"
                 min={0}
-              />
-              2 PERSONERS TELT + {props.twoPersonTentPrice} DKK
+              />{" "}
+
+
+              {/* TILFØJ 2 personers telt */}
+              <button
+                type="button"
+                aria-label={`Tilføj 1x 2-personers telt`}
+                onClick={() => {
+                  setTicketAmount(ticketAmount + 1);
+                  setTickets((obj) =>
+                    obj.concat({
+                      ticketName: "FOO-billet",
+                      id: obj.length,
+                      price: priceRegular,
+                    })
+                  );
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  fill="currentColor"
+                  class="bi bi-plus-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                </svg>
+              </button>
             </label>
             <label htmlFor="telt3">
               <input
-                className="text-black"
+                className="text-black mx-4 appearance-none border p-2 rounded w-20"
                 type="number"
                 id="telt3"
                 name="telt"
@@ -64,6 +129,7 @@ function Camping(props) {
             </label>
           </div>
         </div>
+
         {/* GREEN CAMPING */}
         <div>
           <h2 className="text-fooYellow-200 text-xl mt-4 mb-2">TILVALG</h2>

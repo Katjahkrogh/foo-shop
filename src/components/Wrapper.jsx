@@ -93,6 +93,8 @@ function Wrapper() {
       headers: headersList,
     });
 
+    setStep((prevStep) => prevStep + 1);
+
     let orderID = await response.json();
     console.log(orderID);
   }
@@ -134,6 +136,10 @@ function Wrapper() {
               greenCamping={greenCamping}
               setGreenCamping={setGreenCamping}
               twoPersonTentPrice={twoPersonTentPrice}
+              setTwoPersonTentAmount={setTwoPersonTentAmount}
+              setThreePersonTentAmount={setThreePersonTentAmount}
+              twoPersonTentAmount={twoPersonTentAmount}
+              threePersonTentAmount={threePersonTentAmount}
               threePersonTentPrice={threePersonTentPrice}
             />
             <button
@@ -186,7 +192,7 @@ function Wrapper() {
           </div>
         )}
       </form>
-      
+
       {step === 5 && <EndPage />}
 
       <Basket
