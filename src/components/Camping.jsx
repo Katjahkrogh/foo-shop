@@ -1,6 +1,4 @@
-
-
-function Camping({ campingAreas, totalAmount, setSelectedArea }) {
+function Camping(props) {
   // Funktion til håndtering af ændringer i valgte campingområde
   const handleSelectArea = (event) => {
     const selectedAreaId = event.target.value;
@@ -17,8 +15,8 @@ function Camping({ campingAreas, totalAmount, setSelectedArea }) {
           </h2>
           <p>CAMPING RESEVERTATION 99 DKK</p>
           <div className="flex flex-wrap gap-6 mt-6">
-            {campingAreas
-              .filter((spot) => spot.available > totalAmount)
+            {props.campingAreas
+              .filter((spot) => spot.available > props.totalAmount)
               .map((spot) => (
                 <div key={spot.area}>
                   <input
@@ -47,32 +45,20 @@ function Camping({ campingAreas, totalAmount, setSelectedArea }) {
             <label htmlFor="telt2">
               <input
                 className="text-black"
-                type="radio"
-                value={299}
+                type="number"
                 id="telt2"
                 name="telt"
               />
-              2 PERSONERS TELT + 299 DKK
+              2 PERSONERS TELT + {props.twoPersonTentPrice} DKK
             </label>
             <label htmlFor="telt3">
               <input
                 className="text-black"
-                type="radio"
-                value={399}
+                type="number"
                 id="telt3"
                 name="telt"
               />
-              3 PERSONERS TELT + 399 DKK
-            </label>
-            <label htmlFor="person-telt">
-              <input
-                className="text-black"
-                type="radio"
-                value={199}
-                id="person-telt"
-                name="telt"
-              />
-              TELT TIL ANTAL BILLETTER + 199 DKK PER TELT
+              3 PERSONERS TELT + {props.threePersonTentPrice} DKK
             </label>
           </div>
         </div>

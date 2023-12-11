@@ -6,7 +6,6 @@ function Basket(props) {
   let twoPersonTentTotal = props.twoPersonTentAmount * props.twoPersonTentPrice;
   let threePersonTentTotal =
     props.threePersonTentAmount * props.threePersonTentPrice;
-  let tatTotal = props.tatPrice * props.totalAmount;
 
   const bookingFee = 99;
 
@@ -26,7 +25,6 @@ function Basket(props) {
     greenCampingTotal +
     twoPersonTentTotal +
     threePersonTentTotal +
-    tatTotal +
     bookingFee;
   const subtotal = total - greenCampingTotal - bookingFee;
 

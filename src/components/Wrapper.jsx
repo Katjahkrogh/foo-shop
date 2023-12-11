@@ -18,9 +18,6 @@ function Wrapper() {
   const greenCampingPrice = 249;
   const twoPersonTentPrice = 299;
   const threePersonTentPrice = 399;
-  const tatPrice = 199;
-
-  let totalTentPrice = twoPersonTentPrice + threePersonTentPrice;
 
   // Camping område valgt
   const [selectedArea, setSelectedArea] = useState("");
@@ -189,7 +186,6 @@ function Wrapper() {
         threePersonTentPrice={threePersonTentPrice}
         twoPersonTentPrice={twoPersonTentPrice}
         selectedArea={selectedArea}
-        tatPrice={tatPrice}
       />
     </div>
   );
