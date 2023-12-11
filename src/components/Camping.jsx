@@ -5,8 +5,6 @@ function Camping({ campingAreas, totalAmount, setSelectedArea }) {
   const handleSelectArea = (event) => {
     const selectedAreaId = event.target.value;
     setSelectedArea(selectedAreaId);
-
-    console.log(handleSelectArea);
   };
 
   return (
