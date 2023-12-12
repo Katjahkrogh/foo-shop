@@ -33,7 +33,8 @@ function Basket(props) {
       <h3>BILLETTER</h3>
       {props.ticketAmount > 0 && (
         <div className="flex justify-between">
-          <p>FOO-BILLET x{props.ticketAmount} </p> <p>{props.priceRegular} DKK</p>
+          <p>FOO-BILLET x{props.ticketAmount} </p>{" "}
+          <p>{props.priceRegular} DKK</p>
         </div>
       )}
       {props.vipAmount > 0 && (
@@ -51,13 +52,13 @@ function Basket(props) {
       <h3>OVERSIGT</h3>
       {props.twoPersonTentAmount > 0 && (
         <div className="flex justify-between text-sm">
-          <p> + 2 personers telt</p>
+          <p> + 2 personers telt x{props.twoPersonTentAmount}</p>
           <p>{props.twoPersonTentPrice} DKK</p>
         </div>
       )}
       {props.threePersonTentAmount > 0 && (
         <div className="flex justify-between text-sm ">
-          <p> + 3 personers telt</p>
+          <p> + 3 personers telt x{props.threePersonTentAmount}</p>
           <p>{props.threePersonTentPrice} DKK</p>
         </div>
       )}
@@ -65,11 +66,11 @@ function Basket(props) {
         <p>Booking gebyr</p> <p>{bookingFee} DKK</p>
       </div>
       <div className="flex justify-between text-sm">
-        {" "}
+
         <p>Billetter </p> <p> {subtotal} DKK</p>
       </div>
       <div className="flex justify-between text-xl">
-        {" "}
+
         <p>I alt</p> <p>{total} DKK</p>
       </div>
     </aside>
