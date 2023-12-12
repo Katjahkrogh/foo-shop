@@ -102,7 +102,9 @@ function Wrapper() {
 
   return (
     <>
-      <Timer />
+      {step !== 0 && step !== 1 && step !== 5 && (
+        <Timer step={step} setStep={setStep} />
+      )}
       <div className="grid grid-cols-3">
         <form onSubmit={submit} id="bookingForm" className="col-span-2">
           {step === 0 && (
