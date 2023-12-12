@@ -38,6 +38,9 @@ module.exports = {
         transparent: {
           200: "transparent",
         },
+        fooGreen: {
+          200: "#97A95E",
+        },
       },
       borderRadius: {
         none: "0",

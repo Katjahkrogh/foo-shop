@@ -105,7 +105,7 @@ function Wrapper() {
       {step !== 0 && step !== 1 && step !== 5 && (
         <Timer step={step} setStep={setStep} />
       )}
-      <div className="flex flex-wrap justify-center">
+      <main className="flex flex-wrap justify-center mx-20">
         <form onSubmit={submit} id="bookingForm" className="w-full lg:w-4/6">
           {step === 0 && (
             <div className="flex flex-col m-10 px-10">
@@ -121,7 +121,7 @@ function Wrapper() {
                 priceVip={priceVip}
               />
               <button
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end"
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
                 onClick={() => {
                   setStep((prevStep) => prevStep + 1);
                 }}
@@ -149,7 +149,7 @@ function Wrapper() {
                 threePersonTentPrice={threePersonTentPrice}
               />
               <button
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
                 onClick={() => {
                   setStep((prevStep) => prevStep + 1);
                   reserveSpot();
@@ -167,7 +167,7 @@ function Wrapper() {
                 tickets={tickets}
               />
               <button
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
                 onClick={() => {
                   setStep((prevStep) => prevStep + 1);
                 }}
@@ -180,7 +180,7 @@ function Wrapper() {
             <div className="flex flex-col m-10 px-10">
               <Payment setStep={setStep} campingAreas={campingAreas} />
               <button
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
                 onClick={() => {
                   setStep((prevStep) => prevStep + 1);
                 }}
@@ -195,7 +195,7 @@ function Wrapper() {
               <button
                 type="submit"
                 id="bookingForm"
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
               >
                 BETAL (submit)
               </button>
@@ -221,7 +221,7 @@ function Wrapper() {
             selectedArea={selectedArea}
           />
         </div>
-      </div>
+      </main>
     </>
   );
 }
