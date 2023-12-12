@@ -165,6 +165,8 @@ function Camping(props) {
             type="checkbox"
             name="green"
             id="green"
+            checked={props.greenCamping}
+            onChange={() => props.setGreenCamping((prevValue) => !prevValue)}
           />
           GREEN CAMPING + 249 DKK
         </label>
