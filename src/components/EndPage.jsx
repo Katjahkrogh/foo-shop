@@ -12,8 +12,10 @@ function EndPage() {
   return (
     <div>
       <h2
-        className={`${bebasNeue.className} text-3xl text-fooYellow-200 mb-4`}
-      >ENDPAGE</h2>
+        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-4`}
+      >
+        ENDPAGE
+      </h2>
     </div>
   );
 }

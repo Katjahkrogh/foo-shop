@@ -1,3 +1,4 @@
+import React from "react";
 import { Bebas_Neue } from "next/font/google";
 
 const bebasNeue = Bebas_Neue({
@@ -21,7 +22,7 @@ function Camping(props) {
       {/* VÆLG CAMPING AREA */}
       <div>
         <h2
-          className={`${bebasNeue.className} text-3xl text-fooYellow-200 mb-4`}
+          className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-2`}
         >
           VÆLG CAMPING OMRÅDE
         </h2>
@@ -30,12 +31,9 @@ function Camping(props) {
           {props.campingAreas
             .filter((spot) => spot.available > props.totalAmount)
             .map((spot) => (
-              <div
-                key={spot.area}
-                className="flex gap-2 items-center p-4 bg-fooGrey-800 w-52 rounded-lg"
-              >
+              <div key={spot.area} className="flex gap-2 items-center ">
                 <input
-                  className="p-4 cursor-pointer "
+                  className="hidden peer "
                   type="radio"
                   id={spot.area}
                   value={spot.area}
@@ -44,7 +42,7 @@ function Camping(props) {
                 />
                 <label
                   htmlFor={spot.area}
-                  className="ml-2 font-medium text-xl cursor-pointer uppercase"
+                  className="font-medium text-xl uppercase items-center justify-between w-48 cursor-pointer p-5 text-fooGrey-300 bg-fooGrey-900 border border-fooGrey-900 rounded-lg  peer-checked:border-fooPink-900 peer-checked:text-fooWhite-900 hover:text-white hover:bg-fooPink-800"
                 >
                   {spot.area}
                   <p className="text-xs text-fooGreen-200">
@@ -56,10 +54,10 @@ function Camping(props) {
         </div>
       </div>
       {/* TILKØB TELTE */}
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between mt-12">
         <div>
           <h2
-            className={`${bebasNeue.className} text-2xl text-fooYellow-200 mb-2 mt-4`}
+            className={`${bebasNeue.className} text-2xl text-fooYellow-200 mb-2 `}
           >
             TILKØB AF TELTE
           </h2>
@@ -140,7 +138,6 @@ function Camping(props) {
                 <h3 className="font-medium text-lg">
                   3 PERSONERS TELT{" "}
                   <p className="text-sm text-fooGrey-200">
-                    {" "}
                     + {props.threePersonTentPrice} DKK{" "}
                   </p>
                 </h3>
@@ -209,21 +206,26 @@ function Camping(props) {
         {/* GREEN CAMPING */}
         <div>
           <h2
-            className={`${bebasNeue.className} text-2xl text-fooYellow-200 mb-2 mt-4`}
+            className={`${bebasNeue.className} text-2xl text-fooYellow-200 mb-2`}
           >
             TILVALG
           </h2>
-          <label htmlFor="green">
+          <div className="flex justify-between items-center gap-4">
             <input
-              className="text-black"
+              className="w-6 h-6"
               type="checkbox"
               name="green"
               id="green"
               checked={props.greenCamping}
               onChange={() => props.setGreenCamping((prevValue) => !prevValue)}
             />
-            GREEN CAMPING + 249 DKK
-          </label>
+            <label htmlFor="green" className="font-medium text-lg">
+              GRØN CAMPING
+              <p className="text-sm text-fooGrey-200">
+                + {props.greenCampingPrice} DKK
+              </p>
+            </label>
+          </div>
         </div>
       </div>
     </fieldset>

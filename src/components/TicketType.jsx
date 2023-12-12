@@ -1,3 +1,4 @@
+import React from "react";
 import { Bebas_Neue } from "next/font/google";
 
 const bebasNeue = Bebas_Neue({
@@ -22,7 +23,7 @@ function TicketType({
   return (
     <fieldset>
       <h2
-        className={`${bebasNeue.className} text-3xl text-fooYellow-200 mb-4`}
+        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-10`}
       >
         VÆLG DINE BILLETTER
       </h2>
@@ -30,8 +31,8 @@ function TicketType({
       {/* FOO-BILLET sektion */}
       <div className="flex justify-between">
         <div>
-          <h3>FOO-BILLET</h3>
-          <p>799 DKK</p>
+          <h3 className="font-medium text-lg md:text-2xl">FOO-BILLET</h3>
+          <p className="text-base md:text-lg text-fooGrey-200">799 DKK</p>
         </div>
 
         <label className="flex items-center" htmlFor="foo-billet">
@@ -110,8 +111,8 @@ function TicketType({
       {/* VIP-BILLET sektion */}
       <div className="flex justify-between mt-10">
         <div>
-          <h3>VIP-BILLET</h3>
-          <p>1299 DKK</p>
+          <h3 className="font-medium text-lg md:text-2xl">VIP-BILLET</h3>
+          <p className="text-base md:text-lg text-fooGrey-200">1299 DKK</p>
         </div>
         <label className="flex items-center" htmlFor="vip-billet">
           {/* FJERN 1 VIP-billet  */}

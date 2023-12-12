@@ -11,18 +11,24 @@ const bebasNeue = Bebas_Neue({
 function Header() {
   return (
     <header>
-      <div className="flex justify-between bg-fooGrey-900 py-6 overflow-x-hidden">
-        <div className="ml-7">
+      <div className="flex justify-between bg-fooGrey-900 pt-4 pb-2 overflow-x-hidden">
+        <div className="ml-7 md:ml-10">
           <h1
-            className={`text-5xl sm:text-7xl ${bebasNeue.className} text-fooYellow-200 mb-2 mt-4`}
+            className={`text-5xl md:text-7xl ${bebasNeue.className} text-fooYellow-200 mt-4`}
           >
             FOOFEST 2024
           </h1>
-          <p className="text-lg">10.07.2024 - 17.07.2024</p>
+          <p className="text-lg md:text-xl mb-2">10.07.2024 - 17.07.2024</p>
         </div>
-        <Image src="/logo.svg" width={200} height={200} alt="logo" className="-mr-28 sm:-mr-16"/>
+        <Image
+          src="/logo.svg"
+          width={200}
+          height={200}
+          alt="logo"
+          className=" -mr-16 -mb-4 md:-mb-8 "
+        />
       </div>
-      <hr className="p-2 bg-fooPink-900 w-screen border-none"></hr>
+      <hr className="p-1 bg-fooPink-900 w-screen border-none"></hr>
     </header>
   );
 }

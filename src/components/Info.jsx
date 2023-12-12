@@ -11,7 +11,9 @@ const bebasNeue = Bebas_Neue({
 function Info({ tickets }) {
   return (
     <fieldset>
-      <h2 className={`${bebasNeue.className} text-3xl text-fooYellow-200 mb-4`}>
+      <h2
+        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-4`}
+      >
         INFORMATION
       </h2>
       {tickets.map((ticket) => (
