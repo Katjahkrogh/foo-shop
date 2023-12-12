@@ -26,7 +26,7 @@ const Timer = ({ setStep, step }) => {
           },
         }}
       >
-        <Countdown value={deadline} onFinish={onFinish} />
+        <Countdown format="mm:ss" value={deadline} onFinish={onFinish} />
       </ConfigProvider>
     </div>
   );
