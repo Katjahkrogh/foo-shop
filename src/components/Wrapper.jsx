@@ -156,7 +156,11 @@ function Wrapper() {
         )}
         {step === 2 && (
           <div>
-            <Info setStep={setStep} campingAreas={campingAreas} tickets={tickets} />
+            <Info
+              setStep={setStep}
+              campingAreas={campingAreas}
+              tickets={tickets}
+            />
             <button
               className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
               onClick={() => {

@@ -208,7 +208,7 @@ function Camping(props) {
               name="green"
               id="green"
             />
-            GREEN CAMPING + 299 DKK
+            GREEN CAMPING + 249 DKK
           </label>
         </div>
     </fieldset>

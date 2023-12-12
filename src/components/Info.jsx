@@ -1,6 +1,6 @@
 import React from "react";
 
-function Info({ tickets, totalAmount }) {
+function Info({ tickets }) {
   return (
     <fieldset className="m-10 p-10">
       <h2 className="text-fooYellow-200 text-xl mb-2">INFORMATION</h2>
@@ -10,8 +10,9 @@ function Info({ tickets, totalAmount }) {
           key={ticket.id}
         >
           <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
-            Foofest gæst 1
+          {ticket.ticketName}
           </legend>
+          <p>Billet nr. {ticket.id +1}</p>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
             <label htmlFor="first-name">
               <input
