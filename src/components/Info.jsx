@@ -12,7 +12,7 @@ function Info({ tickets }) {
   return (
     <fieldset>
       <h2
-        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-4`}
+        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-10`}
       >
         INFORMATION
       </h2>
@@ -30,7 +30,7 @@ function Info({ tickets }) {
               <input
                 type="text"
                 placeholder="First name"
-                className="border p-2 rounded w-full  text-black"
+                className="border p-2 rounded-lg w-full  text-black"
                 id="first-name"
                 required
               ></input>
@@ -39,7 +39,7 @@ function Info({ tickets }) {
               <input
                 type="text"
                 placeholder="Last name"
-                className="border p-2 rounded w-full  text-black"
+                className="border p-2 rounded-lg w-full  text-black"
                 id="last-name"
                 required
               ></input>
@@ -49,7 +49,7 @@ function Info({ tickets }) {
                 type="email"
                 placeholder="Email address"
                 id="email"
-                className="border p-2 rounded w-full  text-black"
+                className="border p-2 rounded-lg w-full  text-black"
                 required
               ></input>
             </label>
@@ -57,7 +57,7 @@ function Info({ tickets }) {
               <input
                 type="phone"
                 placeholder="Phone number"
-                className="border p-2 rounded w-full text-black"
+                className="border p-2 rounded-lg w-full text-black"
                 id="phone"
                 required
               ></input>

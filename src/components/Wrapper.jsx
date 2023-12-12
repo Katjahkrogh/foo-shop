@@ -12,7 +12,7 @@ import Timer from "./Timer";
 
 function Wrapper() {
   // Skift mellem views ud fra steps
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(5);
 
   // priser billetter
   const priceVip = 1299;
@@ -106,10 +106,10 @@ function Wrapper() {
       {step !== 0 && step !== 1 && step !== 5 && (
         <Timer step={step} setStep={setStep} />
       )}
-      <main className="flex flex-wrap justify-center mx-20">
+      <main className="flex flex-wrap justify-center xl:mx-20">
         <form onSubmit={submit} id="bookingForm" className="w-full lg:w-4/6">
           {step === 0 && (
-            <div className="flex flex-col m-10 px-10 ">
+            <div className="flex flex-col m-10 sm:px-10 ">
               <TicketType
                 setStep={setStep}
                 setVipAmount={setVipAmount}
@@ -132,7 +132,7 @@ function Wrapper() {
             </div>
           )}
           {step === 1 && (
-            <div className="flex flex-col m-10 px-10">
+            <div className="flex flex-col m-10 sm:px-10">
               <Camping
                 setStep={setStep}
                 campingAreas={campingAreas}
@@ -161,7 +161,7 @@ function Wrapper() {
             </div>
           )}
           {step === 2 && (
-            <div className="flex flex-col m-10 px-10">
+            <div className="flex flex-col m-10 sm:px-10">
               <Info
                 setStep={setStep}
                 campingAreas={campingAreas}
@@ -178,7 +178,7 @@ function Wrapper() {
             </div>
           )}
           {step === 3 && (
-            <div className="flex flex-col m-10 px-10">
+            <div className="flex flex-col m-10 sm:px-10 ">
               <Payment setStep={setStep} campingAreas={campingAreas} />
               <button
                 className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
@@ -191,12 +191,26 @@ function Wrapper() {
             </div>
           )}
           {step === 4 && (
-            <div className="flex flex-col m-10 px-10">
-              <FinalOverview />
+            <div className="flex flex-col m-10 sm:mx-40 p-10 align-center place-self-center rounded-large bg-fooGrey-900 ">
+              <FinalOverview
+                vipAmount={vipAmount}
+                ticketAmount={ticketAmount}
+                greenCamping={greenCamping}
+                setGreenCamping={setGreenCamping}
+                twoPersonTentAmount={twoPersonTentAmount}
+                threePersonTentAmount={threePersonTentAmount}
+                priceVIP={priceVip}
+                totalAmount={totalAmount}
+                priceRegular={priceRegular}
+                greenCampingPrice={greenCampingPrice}
+                threePersonTentPrice={threePersonTentPrice}
+                twoPersonTentPrice={twoPersonTentPrice}
+                selectedArea={selectedArea}
+              />
               <button
                 type="submit"
                 id="bookingForm"
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
               >
                 BETAL (submit)
               </button>
@@ -205,23 +219,26 @@ function Wrapper() {
         </form>
 
         {step === 5 && <EndPage />}
-        <div className="w-full lg:w-2/6">
-          <Basket
-            vipAmount={vipAmount}
-            ticketAmount={ticketAmount}
-            greenCamping={greenCamping}
-            setGreenCamping={setGreenCamping}
-            twoPersonTentAmount={twoPersonTentAmount}
-            threePersonTentAmount={threePersonTentAmount}
-            priceVIP={priceVip}
-            totalAmount={totalAmount}
-            priceRegular={priceRegular}
-            greenCampingPrice={greenCampingPrice}
-            threePersonTentPrice={threePersonTentPrice}
-            twoPersonTentPrice={twoPersonTentPrice}
-            selectedArea={selectedArea}
-          />
-        </div>
+
+        {step < 4 && (
+          <div className="w-full lg:w-2/6">
+            <Basket
+              vipAmount={vipAmount}
+              ticketAmount={ticketAmount}
+              greenCamping={greenCamping}
+              setGreenCamping={setGreenCamping}
+              twoPersonTentAmount={twoPersonTentAmount}
+              threePersonTentAmount={threePersonTentAmount}
+              priceVIP={priceVip}
+              totalAmount={totalAmount}
+              priceRegular={priceRegular}
+              greenCampingPrice={greenCampingPrice}
+              threePersonTentPrice={threePersonTentPrice}
+              twoPersonTentPrice={twoPersonTentPrice}
+              selectedArea={selectedArea}
+            />
+          </div>
+        )}
       </main>
     </>
   );

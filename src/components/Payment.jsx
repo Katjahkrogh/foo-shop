@@ -71,11 +71,11 @@ function Payment() {
   return (
     <fieldset>
       <h2
-        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-4`}
+        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-10`}
       >
         BETALINGSOPLYSNINGER
       </h2>
-      <div className="flex flex-col md:flex-row gap-4 m-10 p-10">
+      <div className="flex flex-col sm:flex-row gap-10 sm:gap-8 ">
         <div>
           <Cards
             number={cardInfo.number}
@@ -86,11 +86,11 @@ function Payment() {
           />
         </div>
         <div className="flex flex-wrap gap-4">
-          <label htmlFor="number">
+          <label htmlFor="number" className=" w-full">
             <input
-              className="text-black border p-2 rounded w-full "
+              className="text-black border p-2 rounded-lg w-full"
               unique="cardNumber"
-              placeholder="Card number"
+              placeholder="Kort nummer"
               maxLength="16"
               name="number"
               required
@@ -101,11 +101,11 @@ function Payment() {
             />
           </label>
 
-          <label htmlFor="name">
+          <label htmlFor="name" className=" w-full">
             <input
-              className="text-black border p-2 rounded w-full"
+              className="text-black border p-2 rounded-lg w-full"
               type="text"
-              placeholder="Cardholder name"
+              placeholder="Kortholder navn"
               name="name"
               required
               value={cardInfo.name}
@@ -113,12 +113,12 @@ function Payment() {
               onFocus={handleInputFocus}
             />
           </label>
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-full">
             <label htmlFor="expiry">
               <input
-                className="text-black border p-2 rounded w-full"
+                className="text-black border-fooGrey-900 border p-2 rounded-lg w-full"
                 unique="cardExpiry"
-                placeholder="MM/YY"
+                placeholder="MM/ÅÅ"
                 maxLength="5"
                 name="expiry"
                 required
@@ -131,7 +131,7 @@ function Payment() {
             </label>
             <label htmlFor="cvc">
               <input
-                className="text-black border p-2 rounded w-full"
+                className="text-black border p-2 rounded-lg w-full"
                 unique="cardCvc"
                 placeholder="CVC"
                 maxLength="4"
