@@ -7,6 +7,7 @@ import Basket from "./Basket";
 import Payment from "./Payment";
 import EndPage from "./EndPage";
 import FinalOverview from "./FinalOverview";
+import Timer from "./Timer";
 
 function Wrapper() {
   // Skift mellem views ud fra steps
@@ -100,122 +101,125 @@ function Wrapper() {
   }
 
   return (
-    <div className="grid grid-cols-3">
-      <form onSubmit={submit} id="bookingForm" className="col-span-2">
-        {step === 0 && (
-          <div>
-            <TicketType
-              setStep={setStep}
-              setVipAmount={setVipAmount}
-              vipAmount={vipAmount}
-              setTicketAmount={setTicketAmount}
-              ticketAmount={ticketAmount}
-              tickets={tickets}
-              setTickets={setTickets}
-              priceRegular={priceRegular}
-              priceVip={priceVip}
-            />
-            <button
-              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
-              onClick={() => {
-                setStep((prevStep) => prevStep + 1);
-              }}
-            >
-              VÆLG CAMPING
-            </button>
-          </div>
-        )}
-        {step === 1 && (
-          <div>
-            <Camping
-              setStep={setStep}
-              campingAreas={campingAreas}
-              totalAmount={totalAmount}
-              setTickets={setTickets}
-              setSelectedArea={setSelectedArea}
-              greenCampingPrice={greenCampingPrice}
-              greenCamping={greenCamping}
-              setGreenCamping={setGreenCamping}
-              twoPersonTentPrice={twoPersonTentPrice}
-              setTwoPersonTentAmount={setTwoPersonTentAmount}
-              setThreePersonTentAmount={setThreePersonTentAmount}
-              twoPersonTentAmount={twoPersonTentAmount}
-              threePersonTentAmount={threePersonTentAmount}
-              threePersonTentPrice={threePersonTentPrice}
-            />
-            <button
-              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
-              onClick={() => {
-                setStep((prevStep) => prevStep + 1);
-                reserveSpot();
-              }}
-            >
-              FIND MINE BILLETTER
-            </button>
-          </div>
-        )}
-        {step === 2 && (
-          <div>
-            <Info
-              setStep={setStep}
-              campingAreas={campingAreas}
-              tickets={tickets}
-            />
-            <button
-              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
-              onClick={() => {
-                setStep((prevStep) => prevStep + 1);
-              }}
-            >
-              VÆLG BETALING
-            </button>
-          </div>
-        )}
-        {step === 3 && (
-          <div>
-            <Payment setStep={setStep} campingAreas={campingAreas} />
-            <button
-              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
-              onClick={() => {
-                setStep((prevStep) => prevStep + 1);
-              }}
-            >
-              SE OVERBLIK OG BETAL
-            </button>
-          </div>
-        )}
-        {step === 4 && (
-          <div>
-            <FinalOverview />
-            <button
-              type="submit"
-              id="bookingForm"
-              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
-            >
-              BETAL (submit)
-            </button>
-          </div>
-        )}
-      </form>
+    <>
+      <Timer />
+      <div className="grid grid-cols-3">
+        <form onSubmit={submit} id="bookingForm" className="col-span-2">
+          {step === 0 && (
+            <div>
+              <TicketType
+                setStep={setStep}
+                setVipAmount={setVipAmount}
+                vipAmount={vipAmount}
+                setTicketAmount={setTicketAmount}
+                ticketAmount={ticketAmount}
+                tickets={tickets}
+                setTickets={setTickets}
+                priceRegular={priceRegular}
+                priceVip={priceVip}
+              />
+              <button
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+                onClick={() => {
+                  setStep((prevStep) => prevStep + 1);
+                }}
+              >
+                VÆLG CAMPING
+              </button>
+            </div>
+          )}
+          {step === 1 && (
+            <div>
+              <Camping
+                setStep={setStep}
+                campingAreas={campingAreas}
+                totalAmount={totalAmount}
+                setTickets={setTickets}
+                setSelectedArea={setSelectedArea}
+                greenCampingPrice={greenCampingPrice}
+                greenCamping={greenCamping}
+                setGreenCamping={setGreenCamping}
+                twoPersonTentPrice={twoPersonTentPrice}
+                setTwoPersonTentAmount={setTwoPersonTentAmount}
+                setThreePersonTentAmount={setThreePersonTentAmount}
+                twoPersonTentAmount={twoPersonTentAmount}
+                threePersonTentAmount={threePersonTentAmount}
+                threePersonTentPrice={threePersonTentPrice}
+              />
+              <button
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+                onClick={() => {
+                  setStep((prevStep) => prevStep + 1);
+                  reserveSpot();
+                }}
+              >
+                FIND MINE BILLETTER
+              </button>
+            </div>
+          )}
+          {step === 2 && (
+            <div>
+              <Info
+                setStep={setStep}
+                campingAreas={campingAreas}
+                tickets={tickets}
+              />
+              <button
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+                onClick={() => {
+                  setStep((prevStep) => prevStep + 1);
+                }}
+              >
+                VÆLG BETALING
+              </button>
+            </div>
+          )}
+          {step === 3 && (
+            <div>
+              <Payment setStep={setStep} campingAreas={campingAreas} />
+              <button
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+                onClick={() => {
+                  setStep((prevStep) => prevStep + 1);
+                }}
+              >
+                SE OVERBLIK OG BETAL
+              </button>
+            </div>
+          )}
+          {step === 4 && (
+            <div>
+              <FinalOverview />
+              <button
+                type="submit"
+                id="bookingForm"
+                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10"
+              >
+                BETAL (submit)
+              </button>
+            </div>
+          )}
+        </form>
 
-      {step === 5 && <EndPage />}
+        {step === 5 && <EndPage />}
 
-      <Basket
-        vipAmount={vipAmount}
-        ticketAmount={ticketAmount}
-        greenCamping={greenCamping}
-        setGreenCamping={setGreenCamping}
-        twoPersonTentAmount={twoPersonTentAmount}
-        threePersonTentAmount={threePersonTentAmount}
-        priceVIP={priceVip}
-        totalAmount={totalAmount}
-        priceRegular={priceRegular}
-        greenCampingPrice={greenCampingPrice}
-        threePersonTentPrice={threePersonTentPrice}
-        twoPersonTentPrice={twoPersonTentPrice}
-        selectedArea={selectedArea}
-      />
-    </div>
+        <Basket
+          vipAmount={vipAmount}
+          ticketAmount={ticketAmount}
+          greenCamping={greenCamping}
+          setGreenCamping={setGreenCamping}
+          twoPersonTentAmount={twoPersonTentAmount}
+          threePersonTentAmount={threePersonTentAmount}
+          priceVIP={priceVip}
+          totalAmount={totalAmount}
+          priceRegular={priceRegular}
+          greenCampingPrice={greenCampingPrice}
+          threePersonTentPrice={threePersonTentPrice}
+          twoPersonTentPrice={twoPersonTentPrice}
+          selectedArea={selectedArea}
+        />
+      </div>
+    </>
   );
 }
 export default Wrapper;

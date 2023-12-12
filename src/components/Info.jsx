@@ -10,9 +10,9 @@ function Info({ tickets }) {
           key={ticket.id}
         >
           <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
-          {ticket.ticketName}
+            {ticket.ticketName}
           </legend>
-          <p>Billet nr. {ticket.id +1}</p>
+          <p>Billet nr. {ticket.id + 1}</p>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
             <label htmlFor="first-name">
               <input
