@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Bebas_Neue } from "next/font/google";
 
 const bebasNeue = Bebas_Neue({
@@ -36,12 +37,12 @@ function Basket(props) {
   const ticketsTotal = vipTotal + regularTotal;
 
   return (
-    <aside className="bg-fooGrey-900 m-10 rounded-large p-10 flex flex-col justify-between min-w-max">
+    <aside className="bg-fooGrey-900 m-10 rounded-large p-10 flex flex-col min-w-max">
       <div>
         <h2 className={`${bebasNeue.className} text-3xl text-fooWhite-900`}>
           KURV
         </h2>
-        <div className="pb-4 mb-4 border-b">
+        <div className="mb-4 mt-2">
           {(props.ticketAmount > 0 || props.vipAmount > 0) && (
             <h3 className={`${bebasNeue.className} text-xl text-fooYellow-200`}>
               BILLETTER
@@ -70,9 +71,15 @@ function Basket(props) {
             </div>
           )}
         </div>
+        {props.ticketAmount === 0 && props.vipAmount === 0 && (
+          <div className="flex flex-col gap-2 items-center pt-6 pb-6">
+            <Image src={"emptyBasket.svg"} width={100} height={100} alt="Kurven er tom"/>
+            <p className="text-fooGrey-200 text-sm">Kurven er tom</p>
+          </div>
+        )}
 
         {props.selectedArea && (
-          <div>
+          <div className="pt-4 mb-4 border-t">
             <h3 className={`${bebasNeue.className} text-xl text-fooYellow-200`}>
               CAMPING OMRÅDE
             </h3>
