@@ -1,4 +1,11 @@
 import React from "react";
+import { Bebas_Neue } from "next/font/google";
+
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 function Basket(props) {
   let vipTotal = props.vipAmount * props.priceVIP;
@@ -10,11 +17,10 @@ function Basket(props) {
   const bookingFee = 99;
 
   // sætter GreenCampingTotal til at være greenCampingPrice, hvis greenCamping er true, hvis den er false sætter prisen til 0.
-
   let greenCampingTotal = props.greenCampingPrice;
 
   if (props.greenCamping === true) {
-    greenCampingTotal = props.priceGreenCamping;
+    greenCampingTotal = 249;
   } else {
     greenCampingTotal = 0;
   }
@@ -26,52 +32,97 @@ function Basket(props) {
     twoPersonTentTotal +
     threePersonTentTotal +
     bookingFee;
-  const subtotal = total - greenCampingTotal - bookingFee;
+
+  const ticketsTotal = vipTotal + regularTotal;
 
   return (
-    <aside className="bg-fooGrey-900 m-10 rounded-xl p-10 max-h-96 flex flex-col gap-4 min-w-max">
-      <h3>BILLETTER</h3>
-      {props.ticketAmount > 0 && (
-        <div className="flex justify-between">
-          <p>FOO-BILLET x{props.ticketAmount} </p>{" "}
-          <p>{props.priceRegular} DKK</p>
+    <aside className="bg-fooGrey-900 m-10 rounded-large p-10 flex flex-col justify-between min-w-max">
+      <div>
+        <h2 className={`${bebasNeue.className} text-3xl text-fooWhite-900`}>
+          KURV
+        </h2>
+        <div className="pb-4 mb-4 border-b">
+          {(props.ticketAmount > 0 || props.vipAmount > 0) && (
+            <h3 className={`${bebasNeue.className} text-xl text-fooYellow-200`}>
+              BILLETTER
+            </h3>
+          )}
+          {props.ticketAmount > 0 && (
+            <div className="flex justify-between items-center">
+              <div>
+                <p className={`text-base md:text-lg font-medium`}>FOO-BILLET</p>
+                <p className={`text-sm text-fooGrey-200`}>
+                  {props.priceRegular} DKK
+                </p>
+              </div>
+              <p className={`text-xl`}>x {props.ticketAmount}</p>
+            </div>
+          )}
+          {props.vipAmount > 0 && (
+            <div className="flex justify-between items-center">
+              <div>
+                <p className={`text-base md:text-lg font-medium`}>VIP-BILLET</p>
+                <p className={`text-sm text-fooGrey-200`}>
+                  {props.priceVIP} DKK
+                </p>
+              </div>
+              <p className={`text-xl`}>x {props.vipAmount}</p>
+            </div>
+          )}
         </div>
-      )}
-      {props.vipAmount > 0 && (
-        <div className="flex justify-between">
-          <p>VIP-BILLET x{props.vipAmount} </p> <p>{props.priceVIP} DKK</p>
-        </div>
-      )}
 
-      {props.selectedArea && (
-        <div>
-          <h3>CAMPING OMRÅDE</h3> <p>{props.selectedArea}</p>
-        </div>
-      )}
-
-      <h3>OVERSIGT</h3>
-      {props.twoPersonTentAmount > 0 && (
-        <div className="flex justify-between text-sm">
-          <p> + 2 personers telt x{props.twoPersonTentAmount}</p>
-          <p>{props.twoPersonTentPrice} DKK</p>
-        </div>
-      )}
-      {props.threePersonTentAmount > 0 && (
-        <div className="flex justify-between text-sm ">
-          <p> + 3 personers telt x{props.threePersonTentAmount}</p>
-          <p>{props.threePersonTentPrice} DKK</p>
-        </div>
-      )}
-      <div className="flex justify-between text-sm ">
-        <p>Booking gebyr</p> <p>{bookingFee} DKK</p>
+        {props.selectedArea && (
+          <div>
+            <h3 className={`${bebasNeue.className} text-xl text-fooYellow-200`}>
+              CAMPING OMRÅDE
+            </h3>
+            <p className="font-medium uppercase text-base md:text-lg">
+              {props.selectedArea}
+            </p>
+          </div>
+        )}
       </div>
-      <div className="flex justify-between text-sm">
+      <div>
+        <div className="pt-4 border-t">
+          <h3 className="text-sm font-bold mb-1">OVERSIGT</h3>
 
-        <p>Billetter </p> <p> {subtotal} DKK</p>
-      </div>
-      <div className="flex justify-between text-xl">
+          <div className="flex justify-between text-sm text-fooGrey-200">
+            <p>Billetter x {props.totalAmount}</p> <p> {ticketsTotal} DKK</p>
+          </div>
 
-        <p>I alt</p> <p>{total} DKK</p>
+          {props.twoPersonTentAmount > 0 && (
+            <div className="flex justify-between text-sm">
+              <p className="text-fooGrey-200 text-sm">
+                2 personers telt x {props.twoPersonTentAmount}
+              </p>
+              <p className="text-fooGrey-200 text-sm">
+                {twoPersonTentTotal} DKK
+              </p>
+            </div>
+          )}
+
+          {props.threePersonTentAmount > 0 && (
+            <div className="flex justify-between text-sm text-fooGrey-200">
+              <p>3 personers telt x {props.threePersonTentAmount}</p>
+              <p>{threePersonTentTotal} DKK</p>
+            </div>
+          )}
+
+          {props.greenCamping === true && (
+            <div className="flex justify-between text-sm text-fooGrey-200">
+              <p>Green cmaping</p>
+              <p>{props.greenCampingPrice} DKK</p>
+            </div>
+          )}
+
+          <div className="flex justify-between text-sm text-fooGrey-200">
+            <p>Booking gebyr</p> <p>{bookingFee} DKK</p>
+          </div>
+        </div>
+
+        <div className="flex justify-between text-xl font-medium mt-4">
+          <p>I alt</p> <p>{total} DKK</p>
+        </div>
       </div>
     </aside>
   );
