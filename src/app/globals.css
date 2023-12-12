@@ -8,3 +8,10 @@ body {
   margin: auto;
   color: white;
 }
+
+/* Skjul op- og ned-knapper for input type number */
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
