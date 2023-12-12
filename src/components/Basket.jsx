@@ -73,7 +73,12 @@ function Basket(props) {
         </div>
         {props.ticketAmount === 0 && props.vipAmount === 0 && (
           <div className="flex flex-col gap-2 items-center pt-6 pb-6">
-            <Image src={"emptyBasket.svg"} width={100} height={100} alt="Kurven er tom"/>
+            <Image
+              src={"emptyBasket.svg"}
+              width={100}
+              height={100}
+              alt="Kurven er tom"
+            />
             <p className="text-fooGrey-200 text-sm">Kurven er tom</p>
           </div>
         )}
@@ -117,7 +122,7 @@ function Basket(props) {
 
           {props.greenCamping === true && (
             <div className="flex justify-between text-sm text-fooGrey-200">
-              <p>Green cmaping</p>
+              <p>Green camping</p>
               <p>{props.greenCampingPrice} DKK</p>
             </div>
           )}

@@ -1,3 +1,11 @@
+import { Bebas_Neue } from "next/font/google";
+
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 function Camping(props) {
   // Funktion til håndtering af ændringer i valgte campingområde
   const handleSelectArea = (event) => {
@@ -9,10 +17,14 @@ function Camping(props) {
   const totalThreeTentAmount = props.threePersonTentAmount;
 
   return (
-    <fieldset className="m-10 p-10">
+    <fieldset>
       {/* VÆLG CAMPING AREA */}
       <div>
-        <h2 className="text-fooYellow-200 text-xl mb-2">VÆLG CAMPING OMRÅDE</h2>
+        <h2
+          className={`${bebasNeue.className} text-3xl text-fooYellow-200 mb-4`}
+        >
+          VÆLG CAMPING OMRÅDE
+        </h2>
         <p>CAMPING RESEVERTATION 99 DKK</p>
         <div className="flex flex-wrap gap-6 mt-6">
           {props.campingAreas

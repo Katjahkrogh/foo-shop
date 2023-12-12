@@ -1,6 +1,14 @@
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { useState } from "react";
 import Cards from "react-credit-cards-2";
+import { Bebas_Neue } from "next/font/google";
+
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 
 function Payment() {
   const [cardInfo, setCardInfo] = useState({
@@ -62,7 +70,10 @@ function Payment() {
 
   return (
     <fieldset>
-      <h2 className="text-fooYellow-200 text-xl mb-2">BETALINGSOPLYSNINGER</h2>
+      
+      <h2 className={`${bebasNeue.className} text-3xl text-fooYellow-200 mb-4`}>
+        BETALINGSOPLYSNINGER
+      </h2>
       <div className="flex flex-col md:flex-row gap-4 m-10 p-10">
         <div>
           <Cards

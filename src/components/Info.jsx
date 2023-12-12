@@ -1,9 +1,19 @@
 import React from "react";
+import { Bebas_Neue } from "next/font/google";
+
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 
 function Info({ tickets }) {
   return (
-    <fieldset className="m-10 p-10">
-      <h2 className="text-fooYellow-200 text-xl mb-2">INFORMATION</h2>
+    <fieldset>
+      <h2 className={`${bebasNeue.className} text-3xl text-fooYellow-200 mb-4`}>
+        INFORMATION
+      </h2>
       {tickets.map((ticket) => (
         <div
           className="container mx-auto border border-white p-6 mb-4"
