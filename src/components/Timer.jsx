@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, ConfigProvider, Statistic } from "antd";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 const { Countdown } = Statistic;
 
 const Timer = ({ setStep, step }) => {
