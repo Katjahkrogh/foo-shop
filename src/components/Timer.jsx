@@ -12,7 +12,7 @@ const Timer = ({ setStep, step }) => {
   };
 
   return (
-    <div className="flex content-baseline justify-center bg-fooGrey-900 ml-0 mr-0">
+    <div className="flex content-baseline justify-center bg-fooGrey-900 ml-0 mr-0 p-3">
       <p className="text-lg mr-2 text-fooYellow-200">Tid til at gennemføre:</p>
       <ConfigProvider
         theme={{
@@ -23,6 +23,7 @@ const Timer = ({ setStep, step }) => {
           },
           token: {
             colorText: "#FAE499",
+            lineHeight: 1.4,
           },
         }}
       >
