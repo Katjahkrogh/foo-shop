@@ -92,7 +92,6 @@ function Wrapper() {
       telefon: formData.get("phone"),
       camping: formData.get("camping"),
       antal_billetter: totalAmount,
-      // total_pris: totalSpendAmout,
     });
 
     let supabaseHeader = {
