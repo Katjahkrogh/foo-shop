@@ -1,5 +1,7 @@
 import React from 'react'
 import { Bebas_Neue } from "next/font/google";
+import Image from 'next/image';
+
 
 const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
@@ -16,7 +18,7 @@ function EndPage() {
       >
         ENDPAGE
       </h2>
-      <img src="billet.svg" className='' alt='Billet'/>
+      <Image src="billet.svg" className='' alt='Billet'/>
     </div>
     
   );
