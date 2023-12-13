@@ -74,7 +74,7 @@ function Info({ tickets }) {
             <div>
               <label htmlFor="phone"> Telefon </label>
               <input
-                type="phone"
+                type="tel"
                 placeholder="12 34 56 78"
                 className="border p-2 rounded-lg w-full text-black"
                 id="phone"
