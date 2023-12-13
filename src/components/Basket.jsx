@@ -71,6 +71,7 @@ function Basket(props) {
             </div>
           )}
         </div>
+    
         {props.ticketAmount === 0 && props.vipAmount === 0 && (
           <div className="flex flex-col gap-2 items-center pt-6 pb-6">
             <Image

@@ -38,15 +38,14 @@ function FinalOverview(props) {
 
  
   return (
-    <aside >
+    <aside>
       <div>
         <h2
           className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-4`}
         >
-          OVERVIEW{" "}
+          OVERVIEW
         </h2>
-        <input type="checkbox" id="jatak" required />
-        <label htmlFor="jatak">JA TAK TIL BILET PÅ MAIL</label>
+
         <div className="mb-4 mt-2">
           {(props.ticketAmount > 0 || props.vipAmount > 0) && (
             <h3 className={`${bebasNeue.className} text-xl text-fooYellow-200`}>
@@ -140,6 +139,11 @@ function FinalOverview(props) {
         <div className="flex justify-between text-xl font-medium mt-4">
           <p>I alt</p> <p>{total} DKK</p>
         </div>
+      </div>
+
+      <div className="flex gap-2 items-center mt-4">
+        <input type="checkbox" id="jatak" required className="w-3 h-3" />
+        <label htmlFor="jatak" className="text-sm">Jeg accepterer købsbetingelser</label>
       </div>
     </aside>
   );
