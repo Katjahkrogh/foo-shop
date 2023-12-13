@@ -271,7 +271,7 @@ function Wrapper() {
           )}
         </form>
 
-        {step === 5 && <EndPage />}
+        {step === 5 && <EndPage tickets={tickets} />}
 
         {step < 4 && (
           <div className="w-full lg:w-2/6">
