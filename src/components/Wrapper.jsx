@@ -26,6 +26,18 @@ function Wrapper() {
   // Camping område valgt
   const [selectedArea, setSelectedArea] = useState(null);
 
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+
+      const [cardNumber, setCardNumber] = useState("");
+      const [cardName, setCardName] = useState("");
+      const [cvc, setCvc] = useState("");
+      const [expiry, setExpiry] = useState("");
+
+
+
   const campingBtnDisabled = selectedArea === null;
   // let tatTotalPrice = tatPrice * totalAmount; sæt dette ned i kruven
 
@@ -211,13 +223,16 @@ function Wrapper() {
             }`}
           >
             <Info
-              setStep={setStep}
-              campingAreas={campingAreas}
               tickets={tickets}
+              setFirstName={setFirstName}
+              setLastName={setLastName}
+              setEmail={setEmail}
+              setPhone={setPhone}
             />
             <button
               className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
+              disabled={!email || !firstName || !lastName || !phone}
               onClick={() => {
                 setStep((prevStep) => prevStep + 1);
               }}
@@ -231,9 +246,16 @@ function Wrapper() {
               step === 3 ? "" : "hidden"
             }`}
           >
-            <Payment setStep={setStep} campingAreas={campingAreas} />
+            <Payment
+              setStep={setStep}
+              setCardNumber={setCardNumber}
+              setCardName={setCardName}
+              setCvc={setCvc}
+              setExpiry={setExpiry}
+            />
             <button
               className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
+              disabled={!cardName || !cardNumber || !cvc || !expiry}
               onClick={() => {
                 setStep((prevStep) => prevStep + 1);
               }}

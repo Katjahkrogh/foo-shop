@@ -7,7 +7,16 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
-function Info({ tickets }) {
+function Info({
+  tickets,
+  firstName,
+  setFirstName,
+  lastName,
+  setLastName,
+  email,
+  setEmail, phone, setPhone
+}) {
+
   return (
     <fieldset>
       <h2
@@ -41,6 +50,8 @@ function Info({ tickets }) {
                 className="border p-2 rounded-lg w-full  text-black"
                 id="fornavn"
                 name="first-name"
+                onChange={(event) => setFirstName(event.target.value)}
+                value={firstName}
                 required
               ></input>
             </div>
@@ -52,6 +63,7 @@ function Info({ tickets }) {
                 className="border p-2 rounded-lg w-full  text-black"
                 id="efternavn"
                 name="last-name"
+                onChange={(event) => setLastName(event.target.value)}
                 required
               ></input>
             </div>
@@ -63,6 +75,7 @@ function Info({ tickets }) {
                 id="mail"
                 name="email"
                 className="border p-2 rounded-lg w-full  text-black"
+                onChange={(event) => setEmail(event.target.value)}
                 required
               ></input>
             </div>
@@ -74,6 +87,7 @@ function Info({ tickets }) {
                 className="border p-2 rounded-lg w-full text-black"
                 id="telefon"
                 name="phone"
+                onChange={(event) => setPhone(event.target.value)}
                 required
               ></input>
             </div>

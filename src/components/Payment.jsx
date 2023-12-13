@@ -10,7 +10,7 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
-function Payment() {
+function Payment({ setStep, setCardNumber, setCardName, setCvc, setExpiry }) {
   const [cardInfo, setCardInfo] = useState({
     number: "",
     expiry: "",
