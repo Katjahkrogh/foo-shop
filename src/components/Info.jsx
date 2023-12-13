@@ -1,6 +1,7 @@
 import React from "react";
 import { Bebas_Neue } from "next/font/google";
 
+
 const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
@@ -8,60 +9,79 @@ const bebasNeue = Bebas_Neue({
 });
 
 
+
 function Info({ tickets }) {
+  
+
   return (
     <fieldset>
       <h2
-        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-10`}
+        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 `}
       >
         INFORMATION
       </h2>
+      <p className="text-sm text-fooGrey-200 mb-10">
+        UDFYLD INFORMATION TIL DIN BILLET
+      </p>
+
       {tickets.map((ticket) => (
         <div
-          className="container mx-auto border border-white p-6 mb-4"
+          className="container mx-auto border-b border-white mb-4"
           key={ticket.id}
         >
-          <legend className="text-fooYellow-200 text-xl mt-4 mb-2">
+          <legend
+            className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200`}
+          >
             {ticket.ticketName}
           </legend>
-          <p>Billet nr. {ticket.id + 1}</p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-            <label htmlFor="first-name">
+          <p className="font-medium  text-lg mb-8 text-fooGrey-200 ">
+            Deltager nr. {ticket.id + 1}
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
+            <div>
+              <label htmlFor="first-name">Fornavn</label>
               <input
                 type="text"
-                placeholder="First name"
+                placeholder="Fornavn"
                 className="border p-2 rounded-lg w-full  text-black"
                 id="first-name"
+                name="first-name"
                 required
               ></input>
-            </label>
-            <label htmlFor="last-name">
+            </div>
+            <div>
+              <label htmlFor="last-name">Efternavn</label>
               <input
                 type="text"
-                placeholder="Last name"
+                placeholder="Efternavn"
                 className="border p-2 rounded-lg w-full  text-black"
                 id="last-name"
+                name="last-name"
                 required
               ></input>
-            </label>
-            <label htmlFor="email">
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
-                placeholder="Email address"
+                placeholder="eksempel@mail.com"
                 id="email"
+                name="email"
                 className="border p-2 rounded-lg w-full  text-black"
                 required
               ></input>
-            </label>
-            <label htmlFor="phone">
+            </div>
+            <div>
+              <label htmlFor="phone"> Telefon </label>
               <input
                 type="phone"
-                placeholder="Phone number"
+                placeholder="12 34 56 78"
                 className="border p-2 rounded-lg w-full text-black"
                 id="phone"
+                name="phone"
                 required
               ></input>
-            </label>
+            </div>
           </div>
         </div>
       ))}

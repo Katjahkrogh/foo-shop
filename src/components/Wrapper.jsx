@@ -10,6 +10,7 @@ import EndPage from "./EndPage";
 import FinalOverview from "./FinalOverview";
 import Timer from "./Timer";
 
+
 function Wrapper() {
   // Skift mellem views ud fra steps
   const [step, setStep] = useState(0);
@@ -24,8 +25,9 @@ function Wrapper() {
   const threePersonTentPrice = 399;
 
   // Camping område valgt
-  const [selectedArea, setSelectedArea] = useState("");
+  const [selectedArea, setSelectedArea] = useState(null);
 
+  const campingBtnDisabled = selectedArea === null;
   // let tatTotalPrice = tatPrice * totalAmount; sæt dette ned i kruven
 
   // antal telt tilføjelser
@@ -44,7 +46,6 @@ function Wrapper() {
   // sætter ID fra resevationen
   const [reservationId, setReservationId] = useState("");
 
-  const [error, setError] = useState(false);
 
   // GET REQUEST - henter ledige billetter til camping
   const [campingAreas, setCampingAreas] = useState([]);
@@ -111,7 +112,6 @@ function Wrapper() {
           {step === 0 && (
             <div className="flex flex-col m-10 sm:px-10 ">
               <TicketType
-                setStep={setStep}
                 setVipAmount={setVipAmount}
                 vipAmount={vipAmount}
                 setTicketAmount={setTicketAmount}
@@ -120,26 +120,19 @@ function Wrapper() {
                 setTickets={setTickets}
                 priceRegular={priceRegular}
                 priceVip={priceVip}
-                error={error}
               />
 
-      
               <button
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
-                disabled={vipAmount + ticketAmount < 1}
+                className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              "
+                disabled={totalAmount < 1}
                 onClick={() => {
-                  if (vipAmount + ticketAmount < 1) {
-                     console.log("Before setError", error);
-                     setError(true);
-                     console.log("After setError", error);
-                  } else {
-                    setStep((prevStep) => prevStep + 1);
-                  }
+                  setStep((prevStep) => prevStep + 1);
+                  reserveSpot();
                 }}
               >
                 VÆLG CAMPING
-              </button>       
-               {error === true && (<p className="text-white"> Vælg min. 1 billet </p>)}
+              </button>
             </div>
           )}
           {step === 1 && (
@@ -161,7 +154,9 @@ function Wrapper() {
                 threePersonTentPrice={threePersonTentPrice}
               />
               <button
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
+                className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              "
+                disabled={campingBtnDisabled}
                 onClick={() => {
                   setStep((prevStep) => prevStep + 1);
                   reserveSpot();
@@ -179,7 +174,8 @@ function Wrapper() {
                 tickets={tickets}
               />
               <button
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
+                className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              "
                 onClick={() => {
                   setStep((prevStep) => prevStep + 1);
                 }}
@@ -221,7 +217,8 @@ function Wrapper() {
               <button
                 type="submit"
                 id="bookingForm"
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
+                className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              "
               >
                 BETAL (submit)
               </button>

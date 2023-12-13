@@ -10,8 +10,7 @@ const bebasNeue = Bebas_Neue({
 function Camping(props) {
   // Funktion til håndtering af ændringer i valgte campingområde
   const handleSelectArea = (event) => {
-    const selectedAreaId = event.target.value;
-    props.setSelectedArea(selectedAreaId);
+    props.setSelectedArea(event.target.value);
   };
 
   const totalTwoTentAmount = props.twoPersonTentAmount;
