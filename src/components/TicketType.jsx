@@ -187,13 +187,6 @@ function TicketType({
         </label>
       </div>
 
-      {/* gå til nyt step */}
-      {/* <div className="flex justify-end">
-          <NextStepBtn
-            setStep={setStep}
-            text="FIND MINE BILLETTER"
-          ></NextStepBtn>
-        </div> */}
     </fieldset>
   );
 }
