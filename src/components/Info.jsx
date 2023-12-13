@@ -1,18 +1,13 @@
 import React from "react";
 import { Bebas_Neue } from "next/font/google";
 
-
 const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
 
-
-
 function Info({ tickets }) {
-  
-
   return (
     <fieldset>
       <h2
@@ -39,45 +34,45 @@ function Info({ tickets }) {
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
             <div>
-              <label htmlFor="first-name">Fornavn</label>
+              <label htmlFor="fornavn">Fornavn</label>
               <input
                 type="text"
                 placeholder="Fornavn"
                 className="border p-2 rounded-lg w-full  text-black"
-                id="first-name"
+                id="fornavn"
                 name="first-name"
                 required
               ></input>
             </div>
             <div>
-              <label htmlFor="last-name">Efternavn</label>
+              <label htmlFor="efternavn">Efternavn</label>
               <input
                 type="text"
                 placeholder="Efternavn"
                 className="border p-2 rounded-lg w-full  text-black"
-                id="last-name"
+                id="efternavn"
                 name="last-name"
                 required
               ></input>
             </div>
             <div>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="mail">Email</label>
               <input
                 type="email"
                 placeholder="eksempel@mail.com"
-                id="email"
+                id="mail"
                 name="email"
                 className="border p-2 rounded-lg w-full  text-black"
                 required
               ></input>
             </div>
             <div>
-              <label htmlFor="phone"> Telefon </label>
+              <label htmlFor="telefon"> Telefon </label>
               <input
                 type="phone"
                 placeholder="12 34 56 78"
                 className="border p-2 rounded-lg w-full text-black"
-                id="phone"
+                id="telefon"
                 name="phone"
                 required
               ></input>

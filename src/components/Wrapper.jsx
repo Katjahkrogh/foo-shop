@@ -144,96 +144,107 @@ function Wrapper() {
       )}
       <main className="flex flex-wrap justify-center xl:mx-20">
         <form onSubmit={submit} id="bookingForm" className="w-full lg:w-4/6">
-          {step === 0 && (
-            <div className="flex flex-col m-10 sm:px-10 ">
-              <TicketType
-                setVipAmount={setVipAmount}
-                vipAmount={vipAmount}
-                setTicketAmount={setTicketAmount}
-                ticketAmount={ticketAmount}
-                tickets={tickets}
-                setTickets={setTickets}
-                priceRegular={priceRegular}
-                priceVip={priceVip}
-              />
+          <div
+            className={`flex flex-col m-10 sm:px-10 ${
+              step === 0 ? "" : "hidden"
+            }`}
+          >
+            <TicketType
+              setVipAmount={setVipAmount}
+              vipAmount={vipAmount}
+              setTicketAmount={setTicketAmount}
+              ticketAmount={ticketAmount}
+              tickets={tickets}
+              setTickets={setTickets}
+              priceRegular={priceRegular}
+              priceVip={priceVip}
+            />
 
-              <button
-                className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+            <button
+              className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
-                disabled={totalAmount < 1}
-                onClick={() => {
-                  setStep((prevStep) => prevStep + 1);
-                  reserveSpot();
-                }}
-              >
-                VÆLG CAMPING
-              </button>
-            </div>
-          )}
-          {step === 1 && (
-            <div className="flex flex-col m-10 sm:px-10">
-              <Camping
-                setStep={setStep}
-                campingAreas={campingAreas}
-                totalAmount={totalAmount}
-                setTickets={setTickets}
-                setSelectedArea={setSelectedArea}
-                greenCampingPrice={greenCampingPrice}
-                greenCamping={greenCamping}
-                setGreenCamping={setGreenCamping}
-                twoPersonTentPrice={twoPersonTentPrice}
-                setTwoPersonTentAmount={setTwoPersonTentAmount}
-                setThreePersonTentAmount={setThreePersonTentAmount}
-                twoPersonTentAmount={twoPersonTentAmount}
-                threePersonTentAmount={threePersonTentAmount}
-                threePersonTentPrice={threePersonTentPrice}
-              />
-              <button
-                className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              disabled={totalAmount < 1}
+              onClick={() => {
+                setStep((prevStep) => prevStep + 1);
+              }}
+            >
+              VÆLG CAMPING
+            </button>
+          </div>
+
+          <div
+            className={`flex flex-col m-10 sm:px-10 ${
+              step === 1 ? "" : "hidden"
+            }`}
+          >
+            <Camping
+              setStep={setStep}
+              campingAreas={campingAreas}
+              totalAmount={totalAmount}
+              setTickets={setTickets}
+              setSelectedArea={setSelectedArea}
+              greenCampingPrice={greenCampingPrice}
+              greenCamping={greenCamping}
+              setGreenCamping={setGreenCamping}
+              twoPersonTentPrice={twoPersonTentPrice}
+              setTwoPersonTentAmount={setTwoPersonTentAmount}
+              setThreePersonTentAmount={setThreePersonTentAmount}
+              twoPersonTentAmount={twoPersonTentAmount}
+              threePersonTentAmount={threePersonTentAmount}
+              threePersonTentPrice={threePersonTentPrice}
+            />
+            <button
+              className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
-                disabled={campingBtnDisabled}
-                onClick={() => {
-                  setStep((prevStep) => prevStep + 1);
-                  reserveSpot();
-                }}
-              >
-                FIND MINE BILLETTER
-              </button>
-            </div>
-          )}
-          {step === 2 && (
-            <div className="flex flex-col m-10 sm:px-10">
-              <Info
-                setStep={setStep}
-                campingAreas={campingAreas}
-                tickets={tickets}
-              />
-              <button
-                className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              disabled={campingBtnDisabled}
+              onClick={() => {
+                setStep((prevStep) => prevStep + 1);
+                reserveSpot();
+              }}
+            >
+              FIND MINE BILLETTER
+            </button>
+          </div>
+
+          <div
+            className={`flex flex-col m-10 sm:px-10 ${
+              step === 2 ? "" : "hidden"
+            }`}
+          >
+            <Info
+              setStep={setStep}
+              campingAreas={campingAreas}
+              tickets={tickets}
+            />
+            <button
+              className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
-                onClick={() => {
-                  setStep((prevStep) => prevStep + 1);
-                }}
-              >
-                VÆLG BETALING
-              </button>
-            </div>
-          )}
-          {step === 3 && (
-            <div className="flex flex-col m-10 sm:px-10 ">
-              <Payment setStep={setStep} campingAreas={campingAreas} />
-              <button
-                className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
-                onClick={() => {
-                  setStep((prevStep) => prevStep + 1);
-                }}
-              >
-                SE OVERBLIK OG BETAL
-              </button>
-            </div>
-          )}
+              onClick={() => {
+                setStep((prevStep) => prevStep + 1);
+              }}
+            >
+              VÆLG BETALING
+            </button>
+          </div>
+
+          <div
+            className={`flex flex-col m-10 sm:px-10 ${
+              step === 3 ? "" : "hidden"
+            }`}
+          >
+            <Payment setStep={setStep} campingAreas={campingAreas} />
+            <button
+              className="bg-fooPink-900 p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
+              onClick={() => {
+                setStep((prevStep) => prevStep + 1);
+              }}
+            >
+              SE OVERBLIK OG BETAL
+            </button>
+          </div>
+
           {step === 4 && (
-            <div className="flex flex-col m-10 sm:mx-40 p-10 align-center place-self-center rounded-large bg-fooGrey-900 ">
+            <div className="flex flex-col m-10 sm:mx-40 p-10 align-center place-self-center rounded-large bg-fooGrey-900">
               <FinalOverview
                 vipAmount={vipAmount}
                 ticketAmount={ticketAmount}
