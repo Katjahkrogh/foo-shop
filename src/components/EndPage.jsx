@@ -12,15 +12,15 @@ const bebasNeue = Bebas_Neue({
 
 function EndPage() {
   return (
-    <div className='w-4/6'>
+    <div className="w-4/6">
       <h2
         className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-4`}
       >
         ENDPAGE
       </h2>
-      <Image src="billet.svg" className='' alt='Billet'/>
+      <Image src="billet.svg" width={500} height={500} alt="Billet" />
+
     </div>
-    
   );
 }
 

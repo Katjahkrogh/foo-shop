@@ -12,7 +12,7 @@ import Timer from "./Timer";
 
 function Wrapper() {
   // Skift mellem views ud fra steps
-  const [step, setStep] = useState(5);
+  const [step, setStep] = useState(0);
 
   // priser billetter
   const priceVip = 1299;
@@ -44,8 +44,6 @@ function Wrapper() {
   // sætter ID fra resevationen
   const [reservationId, setReservationId] = useState("");
 
-  // sætter tiden fra reservationen
-  const [counter, setCounter] = useState(null);
 
   // GET REQUEST - henter ledige billetter til camping
   const [campingAreas, setCampingAreas] = useState([]);
@@ -76,7 +74,6 @@ function Wrapper() {
 
     let booking = await response.json();
     setReservationId(booking.id);
-    setCounter(booking.timeout);
 
     console.log(booking);
   }
