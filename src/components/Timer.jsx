@@ -4,6 +4,7 @@ import { useState } from "react";
 const { Countdown } = Statistic;
 
 const Timer = ({ setStep, step }) => {
+  // UseState benyttet for at timer nulstiller sig selv ved nyt flow
   const [deadline, setDeadline] = useState(Date.now() + 5 * 60 * 1000);
 
   const onFinish = () => {
@@ -18,7 +19,7 @@ const Timer = ({ setStep, step }) => {
         theme={{
           components: {
             Statistic: {
-              contentFontSize: 20
+              contentFontSize: 20,
             },
           },
           token: {
