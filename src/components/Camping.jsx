@@ -26,11 +26,11 @@ function Camping(props) {
           VÆLG CAMPING OMRÅDE
         </h2>
         <p className="text-sm text-fooGrey-200">CAMPING RESEVERTATION 99 DKK</p>
-        <div className="flex flex-wrap gap-6 mt-8">
+        <div className="flex flex-wrap gap-4 sm:gap-6 mt-8">
           {props.campingAreas
             .filter((spot) => spot.available > props.totalAmount)
             .map((spot) => (
-              <div key={spot.area} className="flex gap-2 items-center ">
+              <div key={spot.area} className="gap-1 flex items-center sm:gap-2">
                 <input
                   className="hidden peer"
                   type="radio"
@@ -42,7 +42,7 @@ function Camping(props) {
                 />
                 <label
                   htmlFor={spot.area}
-                  className="font-medium text-xl uppercase items-center justify-between w-48 cursor-pointer p-5 text-fooGrey-300 bg-fooGrey-900 border border-fooGrey-900 rounded-lg  peer-checked:border-fooPink-900 peer-checked:text-fooWhite-900 hover:text-white hover:bg-fooPink-800"
+                  className="w-36 text-lg font-medium uppercase items-center sm:justify-between cursor-pointer p-4 text-fooGrey-300 bg-fooGrey-900 border border-fooGrey-900 rounded-lg sm:w-48 sm:text-xl sm:p-5 peer-checked:border-fooPink-900 peer-checked:text-fooWhite-900 hover:text-white hover:bg-fooPink-800"
                 >
                   {spot.area}
                   <p className="text-xs text-fooGreen-200">
@@ -54,7 +54,7 @@ function Camping(props) {
         </div>
       </div>
       {/* TILKØB TELTE */}
-      <div className="flex justify-between mt-12">
+      <div className="flex flex-wrap justify-between mt-12">
         <div>
           <h2
             className={`${bebasNeue.className} text-2xl text-fooYellow-200 mb-2 `}
@@ -70,12 +70,10 @@ function Camping(props) {
               className="flex justify-between content-center gap-10"
             >
               <div>
-                <h3 className="font-medium text-lg">
-                  2 PERSONERS TELT
-                  <p className="text-sm text-fooGrey-200">
-                    + {props.twoPersonTentPrice} DKK
-                  </p>
-                </h3>
+                <h3 className="font-medium text-base sm:text-lg">2 PERSONERS TELT</h3>
+                <p className="text-sm text-fooGrey-200">
+                  + {props.twoPersonTentPrice} DKK
+                </p>
               </div>
               {/* FJERN 2 perstelt */}
               <div className="flex items-center">
@@ -135,12 +133,10 @@ function Camping(props) {
 
             <label htmlFor="telt3" className="flex justify-between">
               <div>
-                <h3 className="font-medium text-lg">
-                  3 PERSONERS TELT{" "}
-                  <p className="text-sm text-fooGrey-200">
-                    + {props.threePersonTentPrice} DKK{" "}
-                  </p>
-                </h3>
+                <h3 className="font-medium text-base sm:text-lg">3 PERSONERS TELT </h3>
+                <p className="text-sm text-fooGrey-200">
+                  + {props.threePersonTentPrice} DKK{" "}
+                </p>
               </div>
               <div className="flex items-center">
                 {/* FJERN 1x 3-pers telt */}
@@ -204,7 +200,7 @@ function Camping(props) {
         </div>
 
         {/* GREEN CAMPING */}
-        <div>
+        <div className="mt-10">
           <h2
             className={`${bebasNeue.className} text-2xl text-fooYellow-200 mb-2`}
           >
@@ -219,7 +215,7 @@ function Camping(props) {
               checked={props.greenCamping}
               onChange={() => props.setGreenCamping((prevValue) => !prevValue)}
             />
-            <label htmlFor="green" className="font-medium text-lg">
+            <label htmlFor="green" className="font-medium text-base sm:text-lg">
               GRØN CAMPING
               <p className="text-sm text-fooGrey-200">
                 + {props.greenCampingPrice} DKK

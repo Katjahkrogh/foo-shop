@@ -11,7 +11,7 @@ const bebasNeue = Bebas_Neue({
 function Header() {
   return (
     <header>
-      <div className="flex justify-between bg-fooGrey-900 pt-4 pb-2 overflow-x-hidden">
+      <div className="flex justify-between bg-fooGrey-900 pt-4 pb-2 overflow-hidden">
         <div className="ml-7 md:ml-10">
           <h1
             className={`text-5xl md:text-7xl ${bebasNeue.className} text-fooYellow-200 mt-4`}
