@@ -96,6 +96,8 @@ function Wrapper() {
 
     let orderID = await response.json();
     console.log(orderID);
+
+    //indsæt supabase, fetch, derefter post de info fra formen vi gerne vil gemme.
   }
 
   return (
