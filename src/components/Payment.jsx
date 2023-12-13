@@ -93,11 +93,11 @@ function Payment() {
               placeholder="Kort nummer"
               maxLength="16"
               name="number"
-              required
               value={cardInfo.number}
               onKeyDown={handleNumbersOnly}
               onChange={handleChange}
               onFocus={handleInputFocus}
+              required
             />
           </label>
 
@@ -107,10 +107,10 @@ function Payment() {
               type="text"
               placeholder="Kortholder navn"
               name="name"
-              required
               value={cardInfo.name}
               onChange={handleChange}
               onFocus={handleInputFocus}
+              required
             />
           </label>
           <div className="flex gap-4 w-full">
@@ -121,12 +121,12 @@ function Payment() {
                 placeholder="MM/ÅÅ"
                 maxLength="5"
                 name="expiry"
-                required
                 value={cardInfo.expiry}
                 onKeyDown={handleNumbersOnly}
                 onKeyUp={handleCardExpiry}
                 onChange={handleChange}
                 onFocus={handleInputFocus}
+                required
               />
             </label>
             <label htmlFor="cvc">
@@ -136,10 +136,10 @@ function Payment() {
                 placeholder="CVC"
                 maxLength="4"
                 name="cvc"
-                required
                 value={cardInfo.cvc}
                 onChange={handleChange}
                 onFocus={handleInputFocus}
+                required
               />
             </label>
           </div>

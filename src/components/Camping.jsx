@@ -38,6 +38,7 @@ function Camping(props) {
                   value={spot.area}
                   name="camping"
                   onChange={handleSelectArea}
+                  required
                 />
                 <label
                   htmlFor={spot.area}
