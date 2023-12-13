@@ -32,7 +32,7 @@ function Camping(props) {
             .map((spot) => (
               <div key={spot.area} className="flex gap-2 items-center ">
                 <input
-                  className="hidden peer "
+                  className="hidden peer"
                   type="radio"
                   id={spot.area}
                   value={spot.area}

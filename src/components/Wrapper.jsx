@@ -10,7 +10,6 @@ import EndPage from "./EndPage";
 import FinalOverview from "./FinalOverview";
 import Timer from "./Timer";
 
-
 function Wrapper() {
   // Skift mellem views ud fra steps
   const [step, setStep] = useState(0);
@@ -46,7 +45,6 @@ function Wrapper() {
   // sætter ID fra resevationen
   const [reservationId, setReservationId] = useState("");
 
-
   // GET REQUEST - henter ledige billetter til camping
   const [campingAreas, setCampingAreas] = useState([]);
   useEffect(() => {
@@ -81,25 +79,62 @@ function Wrapper() {
   }
 
   // POST REQUEST - sender endelig bestilling med reservations ID
-  async function submit(e) {
-    e.preventDefault();
-    let headersList = {
+  async function submit(evt) {
+    evt.preventDefault();
+
+    //send data til supabase
+    let formData = new FormData(evt.target);
+
+    let supabaseBody = JSON.stringify({
+      fornavn: formData.get("first-name"),
+      efternavn: formData.get("last-name"),
+      email: formData.get("email"),
+      telefon: formData.get("phone"),
+      camping: formData.get("camping"),
+      antal_billetter: totalAmount,
+      // total_pris: totalSpendAmout,
+    });
+
+    let supabaseHeader = {
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJldW53eWV1c2JvYnVuc2VibHFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI0NzAxNzMsImV4cCI6MjAxODA0NjE3M30.NaRWaxVddNisvlzKaRGppZzKLBUNpOp3Zjl2qt_XXqA",
+      Accept: "application/json",
+      Prefer: "return=representation",
       "Content-Type": "application/json",
     };
-    let bodyContent = JSON.stringify({ id: reservationId });
 
-    let response = await fetch("http://localhost:8080/fullfill-reservation", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    });
+    let supabaseResponse = await fetch(
+      "https://reunwyeusbobunseblqs.supabase.co/rest/v1/foofest-data",
+      {
+        method: "POST",
+        body: supabaseBody,
+        headers: supabaseHeader,
+      }
+    );
+
+    //resever billetter
+
+    let reserveHeader = {
+      "Content-Type": "application/json",
+    };
+
+    let reserveBody = JSON.stringify({ id: reservationId });
+
+    let reserveResponse = await fetch(
+      "http://localhost:8080/fullfill-reservation",
+      {
+        method: "POST",
+        body: reserveBody,
+        headers: reserveHeader,
+      }
+    );
 
     setStep((prevStep) => prevStep + 1);
 
-    let orderID = await response.json();
-    console.log(orderID);
-
-    //indsæt supabase, fetch, derefter post de info fra formen vi gerne vil gemme.
+    let supabaseData = await supabaseResponse.json();
+    console.log(supabaseData);
+    let reserveData = await reserveResponse.json();
+    console.log(reserveData);
   }
 
   return (
