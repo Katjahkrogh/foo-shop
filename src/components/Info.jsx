@@ -25,7 +25,7 @@ function Info({ tickets }) {
             {ticket.ticketName}
           </legend>
           <p>Billet nr. {ticket.id + 1}</p>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
             <label htmlFor="first-name">
               <input
                 type="text"

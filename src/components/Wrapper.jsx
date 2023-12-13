@@ -44,6 +44,7 @@ function Wrapper() {
   // sætter ID fra resevationen
   const [reservationId, setReservationId] = useState("");
 
+  const [error, setError] = useState(false);
 
   // GET REQUEST - henter ledige billetter til camping
   const [campingAreas, setCampingAreas] = useState([]);
@@ -119,15 +120,26 @@ function Wrapper() {
                 setTickets={setTickets}
                 priceRegular={priceRegular}
                 priceVip={priceVip}
+                error={error}
               />
+
+      
               <button
                 className="bg-fooPink-900 p-4 px-8 rounded-full mt-20  place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
+                disabled={vipAmount + ticketAmount < 1}
                 onClick={() => {
-                  setStep((prevStep) => prevStep + 1);
+                  if (vipAmount + ticketAmount < 1) {
+                     console.log("Before setError", error);
+                     setError(true);
+                     console.log("After setError", error);
+                  } else {
+                    setStep((prevStep) => prevStep + 1);
+                  }
                 }}
               >
                 VÆLG CAMPING
-              </button>
+              </button>       
+               {error === true && (<p className="text-white"> Vælg min. 1 billet </p>)}
             </div>
           )}
           {step === 1 && (
