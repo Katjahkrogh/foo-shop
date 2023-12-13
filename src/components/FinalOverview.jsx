@@ -45,6 +45,8 @@ function FinalOverview(props) {
         >
           OVERVIEW{" "}
         </h2>
+        <input type="checkbox" id="jatak" required />
+        <label htmlFor="jatak">JA TAK TIL BILET PÅ MAIL</label>
         <div className="mb-4 mt-2">
           {(props.ticketAmount > 0 || props.vipAmount > 0) && (
             <h3 className={`${bebasNeue.className} text-xl text-fooYellow-200`}>
