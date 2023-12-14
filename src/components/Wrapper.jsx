@@ -29,6 +29,9 @@ function Wrapper() {
   const [selectedArea, setSelectedArea] = useState(null);
 
   const campingBtnDisabled = selectedArea === null;
+const [error, setError] = useState("");
+   
+
   // let tatTotalPrice = tatPrice * totalAmount; sæt dette ned i kruven
 
   // antal telt tilføjelser
@@ -138,7 +141,7 @@ function Wrapper() {
     console.log(reserveData);
   }
 
-  const [error, setError] = useState("");
+ 
 
   return (
     <>
@@ -149,7 +152,7 @@ function Wrapper() {
         <form
           onSubmit={submit}
           id="bookingForm"
-          ref={formRef} 
+          ref={formRef}
           className="w-full lg:w-4/6 mb-40 lg:mb-1"
         >
           <div
@@ -206,13 +209,19 @@ function Wrapper() {
               threePersonTentAmount={threePersonTentAmount}
               threePersonTentPrice={threePersonTentPrice}
             />
+            <p>{error}</p>
             <button
               className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
               aria-disabled={campingBtnDisabled}
               onClick={() => {
-                setStep((prevStep) => prevStep + 1);
-                reserveSpot();
+                if (selectedArea === null) {
+                  setError("Du skal vælge en billet");
+                } else {
+                  setStep((prevStep) => prevStep + 1);
+                  reserveSpot();
+                  setError("");
+                }
               }}
             >
               FIND MINE BILLETTER
@@ -230,35 +239,7 @@ function Wrapper() {
               tickets={tickets}
               formRef={formRef}
             />
-            <button
-              className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
-              "
-              onClick={() => {
-                console.log(formRef.current.querySelector("#infoStep"));
-
-                const infoStepForm =
-                formRef.current?.querySelector("#infoStep");
-                infoStepForm.checkValidity()
-
-                if (infoStepForm.checkValidity(true)) {
-                  setStep((prevStep) => prevStep + 1);
-                }
-
-                // // Udfør validering, hvis Info-steppet er tilgængeligt
-                // if (infoStepForm) {
-                //   const isInfoStepValid = infoStepForm.reportValidity();
-
-                //   if (isInfoStepValid) {
-                //     // Gør noget, når formularen er gyldig
-                //     setStep((prevStep) => prevStep + 1); // For eksempel skift til næste trin
-                //   } else {
-                //     // Gør noget, når formularen ikke er gyldig
-                //   }
-                // }
-              }}
-            >
-              VÆLG BETALING
-            </button>
+  
           </div>
 
           <div

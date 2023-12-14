@@ -1,5 +1,6 @@
 import React from "react";
 import { Bebas_Neue } from "next/font/google";
+import { useState, useEffect } from "react";
 
 const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
@@ -7,7 +8,53 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
-function Info({ tickets, formRef }) {
+
+function Info({ tickets, setStep }) {
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState(""); 
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    validateForm();
+  }, [firstName, lastName, email, phone]);
+  // Validate form
+  const validateForm = () => {
+    let errors = {};
+      errors.firstName = "Name is required.";
+    
+
+    if (!lastName) {
+      errors.lastName = "Name is required.";
+    }
+
+    if (!email) {
+      errors.email = "Email is required.";
+    } 
+
+    if (!phone) {
+      errors.password = "Password is required.";
+    } 
+
+    setErrors(errors);
+    setIsFormValid(Object.keys(errors).length === 0);
+  }; 
+
+     const handleInfoBtn = () => {
+       if (isFormValid) {
+         console.log("info is valid!");
+           setStep((prevStep) => prevStep + 1);
+       } else {
+         console.log("info not valid");
+        
+       }
+     }; 
+
   return (
     <fieldset id="infoStep">
       <h2
@@ -33,13 +80,17 @@ function Info({ tickets, formRef }) {
             Deltager nr. {ticket.id + 1}
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
+            {errors.firstName && (<p className="text-red-500"> hallooooo </p>)}
             <div>
               <label htmlFor="fornavn">Fornavn</label>
+              
               <input
                 type="text"
                 placeholder="Fornavn"
                 className="border p-2 rounded-lg w-full  text-black"
                 id="fornavn"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 name="firstName"
                 required
               ></input>
@@ -51,6 +102,8 @@ function Info({ tickets, formRef }) {
                 placeholder="Efternavn"
                 className="border p-2 rounded-lg w-full  text-black"
                 id="efternavn"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 name="lastName"
                 required
               ></input>
@@ -62,6 +115,8 @@ function Info({ tickets, formRef }) {
                 placeholder="eksempel@mail.com"
                 id="mail"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="border p-2 rounded-lg w-full  text-black"
                 required
               ></input>
@@ -74,12 +129,21 @@ function Info({ tickets, formRef }) {
                 className="border p-2 rounded-lg w-full text-black"
                 id="telefon"
                 name="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required
               ></input>
             </div>
           </div>
         </div>
       ))}
+      <button
+        className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              "
+        onClick={handleInfoBtn}
+      >
+        VÆLG BETALING
+      </button>
     </fieldset>
   );
 }
