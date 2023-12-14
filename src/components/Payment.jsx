@@ -1,5 +1,6 @@
 import React from "react";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
+import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
 import Cards from "react-credit-cards-2";
 import { Bebas_Neue } from "next/font/google";
@@ -11,6 +12,8 @@ const bebasNeue = Bebas_Neue({
 });
 
 function Payment() {
+  const { control, handleSubmit } = useForm();
+  
   const [cardInfo, setCardInfo] = useState({
     number: "",
     expiry: "",
@@ -86,60 +89,92 @@ function Payment() {
           />
         </div>
         <div className="flex flex-wrap gap-4">
-          <label htmlFor="number" className=" w-full">
-            <input
-              className="text-black border p-2 rounded-lg w-full"
-              unique="cardNumber"
-              placeholder="Kort nummer"
-              maxLength="16"
+          <label htmlFor="number" className="w-full">
+            <Controller
               name="number"
-              value={cardInfo.number}
-              onKeyDown={handleNumbersOnly}
-              onChange={handleChange}
-              onFocus={handleInputFocus}
-              required
+              control={control}
+              defaultValue=""
+              rules={{ required: "Kortnummer er påkrævet" }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  className="text-black border p-2 rounded-lg w-full"
+                  unique="cardNumber"
+                  placeholder="Kort nummer"
+                  maxLength="16"
+                  value={cardInfo.number}
+                  onKeyDown={handleNumbersOnly}
+                  onChange={handleChange}
+                  onFocus={handleInputFocus}
+                  required
+                />
+              )}
             />
           </label>
 
-          <label htmlFor="name" className=" w-full">
-            <input
-              className="text-black border p-2 rounded-lg w-full"
-              type="text"
-              placeholder="Kortholder navn"
+          <label htmlFor="name" className="w-full">
+            <Controller
               name="name"
-              value={cardInfo.name}
-              onChange={handleChange}
-              onFocus={handleInputFocus}
-              required
+              control={control}
+              defaultValue=""
+              rules={{ required: "Navn er påkrævet" }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  className="text-black border p-2 rounded-lg w-full"
+                  type="text"
+                  placeholder="Kortholder navn"
+                  value={cardInfo.name}
+                  onChange={handleChange}
+                  onFocus={handleInputFocus}
+                  required
+                />
+              )}
             />
           </label>
           <div className="flex gap-4 w-full">
             <label htmlFor="expiry">
-              <input
-                className="text-black border-fooGrey-900 border p-2 rounded-lg w-full"
-                unique="cardExpiry"
-                placeholder="MM/ÅÅ"
-                maxLength="5"
+              <Controller
                 name="expiry"
-                value={cardInfo.expiry}
-                onKeyDown={handleNumbersOnly}
-                onKeyUp={handleCardExpiry}
-                onChange={handleChange}
-                onFocus={handleInputFocus}
-                required
+                control={control}
+                defaultValue=""
+                rules={{ required: "Udløbsdato er påkrævet" }}
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    className="text-black border-fooGrey-900 border p-2 rounded-lg w-full"
+                    unique="cardExpiry"
+                    placeholder="MM/ÅÅ"
+                    maxLength="5"
+                    value={cardInfo.expiry}
+                    onKeyDown={handleNumbersOnly}
+                    onKeyUp={handleCardExpiry}
+                    onChange={handleChange}
+                    onFocus={handleInputFocus}
+                    required
+                  />
+                )}
               />
             </label>
             <label htmlFor="cvc">
-              <input
-                className="text-black border p-2 rounded-lg w-full"
-                unique="cardCvc"
-                placeholder="CVC"
-                maxLength="4"
+              <Controller
                 name="cvc"
-                value={cardInfo.cvc}
-                onChange={handleChange}
-                onFocus={handleInputFocus}
-                required
+                control={control}
+                defaultValue=""
+                rules={{ required: "CVC er påkrævet" }}
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    className="text-black border p-2 rounded-lg w-full"
+                    unique="cardCvc"
+                    placeholder="CVC"
+                    maxLength="4"
+                    value={cardInfo.cvc}
+                    onChange={handleChange}
+                    onFocus={handleInputFocus}
+                    required
+                  />
+                )}
               />
             </label>
           </div>

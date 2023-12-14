@@ -1,5 +1,6 @@
 import React from "react";
 import { Bebas_Neue } from "next/font/google";
+import { useForm, Controller } from "react-hook-form";
 
 const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
@@ -8,6 +9,8 @@ const bebasNeue = Bebas_Neue({
 });
 
 function Info({ tickets, formRef }) {
+   const { control, register } = useForm();
+
   return (
     <fieldset id="infoStep">
       <h2
@@ -34,48 +37,87 @@ function Info({ tickets, formRef }) {
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
             <div>
-              <label htmlFor="fornavn">Fornavn</label>
-              <input
-                type="text"
-                placeholder="Fornavn"
-                className="border p-2 rounded-lg w-full  text-black"
-                id="fornavn"
-                name="firstName"
-                required
-              ></input>
+              <label htmlFor={`fornavn`}>Fornavn</label>
+              <Controller
+                name={`firstName`}
+                control={control}
+                defaultValue=""
+                rules={{
+                  required: true,
+                  maxLength: 20,
+                }}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    placeholder="Fornavn"
+                    className="border p-2 rounded-lg w-full text-black"
+                    id={`fornavn`}
+                    {...field}
+                  />
+                )}
+              />
             </div>
             <div>
-              <label htmlFor="efternavn">Efternavn</label>
-              <input
-                type="text"
-                placeholder="Efternavn"
-                className="border p-2 rounded-lg w-full  text-black"
-                id="efternavn"
-                name="lastName"
-                required
-              ></input>
+              <label htmlFor={`efternavn`}>Efternavn</label>
+              <Controller
+                name={`lastName`}
+                control={control}
+                defaultValue=""
+                rules={{
+                  pattern: /^[A-Za-z]+$/i,
+                }}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    placeholder="Efternavn"
+                    className="border p-2 rounded-lg w-full text-black"
+                    id={`efternavn`}
+                    {...field}
+                  />
+                )}
+              />
             </div>
             <div>
-              <label htmlFor="mail">Email</label>
-              <input
-                type="email"
-                placeholder="eksempel@mail.com"
-                id="mail"
-                name="email"
-                className="border p-2 rounded-lg w-full  text-black"
-                required
-              ></input>
+              <label htmlFor={`email`}>Email</label>
+              <Controller
+                name={`email`}
+                control={control}
+                defaultValue=""
+                rules={{
+                  required: true,
+                  pattern: /^\S+@\S+$/i,
+                }}
+                render={({ field }) => (
+                  <input
+                    type="email"
+                    placeholder="eksempel@mail.com"
+                    id={`mail`}
+                    {...field}
+                    className="border p-2 rounded-lg w-full text-black"
+                  />
+                )}
+              />
             </div>
             <div>
-              <label htmlFor="telefon"> Telefon </label>
-              <input
-                type="tel"
-                placeholder="12 34 56 78"
-                className="border p-2 rounded-lg w-full text-black"
-                id="telefon"
-                name="phone"
-                required
-              ></input>
+              <label htmlFor={`telefon`}> Telefon </label>
+              <Controller
+                name={`phone`}
+                control={control}
+                defaultValue=""
+                rules={{
+                  required: true,
+                  pattern: /^\d+$/,
+                }}
+                render={({ field }) => (
+                  <input
+                    type="tel"
+                    placeholder="12 34 56 78"
+                    id={`telefon`}
+                    {...field}
+                    className="border p-2 rounded-lg w-full text-black"
+                  />
+                )}
+              />
             </div>
           </div>
         </div>

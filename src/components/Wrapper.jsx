@@ -9,9 +9,20 @@ import Payment from "./Payment";
 import EndPage from "./EndPage";
 import FinalOverview from "./FinalOverview";
 import Timer from "./Timer";
+import { useForm, trigger } from "react-hook-form";
 
+        
 function Wrapper() {
+   const {
+     control,
+     handleSubmit,
+     trigger,
+     formState: { errors },
+   } = useForm();
+
+
   const formRef = useRef(null);
+
 
   // Skift mellem views ud fra steps
   const [step, setStep] = useState(0);
@@ -147,9 +158,9 @@ function Wrapper() {
       )}
       <main className="flex flex-wrap justify-center xl:mx-20">
         <form
-          onSubmit={submit}
+          onSubmit={handleSubmit(submit)}
           id="bookingForm"
-          ref={formRef} 
+          ref={formRef}
           className="w-full lg:w-4/6 mb-40 lg:mb-1"
         >
           <div
@@ -233,30 +244,19 @@ function Wrapper() {
             <button
               className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
-              onClick={() => {
-                console.log(formRef.current.querySelector("#infoStep"));
-
-                const infoStepForm =
-                formRef.current?.querySelector("#infoStep");
-                infoStepForm.checkValidity()
-
-                if (infoStepForm.checkValidity(true)) {
+              onClick={async () => {
+                const isValid = await trigger([
+                  "firstName",
+                  "lastName",
+                  "email",
+                  "phone",
+                ]);
+                if (isValid) {
                   setStep((prevStep) => prevStep + 1);
                 }
-
-                // // Udfør validering, hvis Info-steppet er tilgængeligt
-                // if (infoStepForm) {
-                //   const isInfoStepValid = infoStepForm.reportValidity();
-
-                //   if (isInfoStepValid) {
-                //     // Gør noget, når formularen er gyldig
-                //     setStep((prevStep) => prevStep + 1); // For eksempel skift til næste trin
-                //   } else {
-                //     // Gør noget, når formularen ikke er gyldig
-                //   }
-                // }
               }}
             >
+              {" "}
               VÆLG BETALING
             </button>
           </div>
@@ -331,4 +331,6 @@ function Wrapper() {
     </>
   );
 }
+
+
 export default Wrapper;
