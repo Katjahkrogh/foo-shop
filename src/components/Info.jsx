@@ -7,9 +7,9 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
-function Info({ tickets }) {
+function Info({ tickets, formRef }) {
   return (
-    <fieldset>
+    <fieldset className="info-loop">
       <h2
         className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 `}
       >
@@ -40,7 +40,7 @@ function Info({ tickets }) {
                 placeholder="Fornavn"
                 className="border p-2 rounded-lg w-full  text-black"
                 id="fornavn"
-                name="first-name"
+                name="firstName"
                 required
               ></input>
             </div>
@@ -51,7 +51,7 @@ function Info({ tickets }) {
                 placeholder="Efternavn"
                 className="border p-2 rounded-lg w-full  text-black"
                 id="efternavn"
-                name="last-name"
+                name="lastName"
                 required
               ></input>
             </div>

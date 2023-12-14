@@ -3,7 +3,7 @@ import React from "react";
 import Camping from "./Camping";
 import TicketType from "./TicketType";
 import Info from "./Info";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Basket from "./Basket";
 import Payment from "./Payment";
 import EndPage from "./EndPage";
@@ -11,6 +11,7 @@ import FinalOverview from "./FinalOverview";
 import Timer from "./Timer";
 
 function Wrapper() {
+  const formRef = useRef(null);
   // Skift mellem views ud fra steps
   const [step, setStep] = useState(0);
 
@@ -86,8 +87,8 @@ function Wrapper() {
     let formData = new FormData(evt.target);
 
     let supabaseBody = JSON.stringify({
-      fornavn: formData.get("first-name"),
-      efternavn: formData.get("last-name"),
+      fornavn: formData.get("firstName"),
+      efternavn: formData.get("lastName"),
       email: formData.get("email"),
       telefon: formData.get("phone"),
       camping: formData.get("camping"),
@@ -136,13 +137,20 @@ function Wrapper() {
     console.log(reserveData);
   }
 
+  const [error, setError] = useState("");
+
   return (
     <>
       {step !== 0 && step !== 1 && step !== 5 && (
         <Timer step={step} setStep={setStep} />
       )}
       <main className="flex flex-wrap justify-center xl:mx-20">
-        <form onSubmit={submit} id="bookingForm" className="w-full lg:w-4/6">
+        <form
+          onSubmit={submit}
+          id="bookingForm"
+          ref={formRef}
+          className="w-full lg:w-4/6"
+        >
           <div
             className={`flex flex-col m-10 sm:px-10 ${
               step === 0 ? "" : "hidden"
@@ -159,12 +167,17 @@ function Wrapper() {
               priceVip={priceVip}
             />
 
+            <p>{error}</p>
             <button
               className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
-              disabled={totalAmount < 1}
               onClick={() => {
-                setStep((prevStep) => prevStep + 1);
+                if (totalAmount < 1) {
+                  setError("Du skal vælge en billet");
+                } else {
+                  setStep((prevStep) => prevStep + 1);
+                  setError("");
+                }
               }}
             >
               VÆLG CAMPING
@@ -193,9 +206,9 @@ function Wrapper() {
               threePersonTentPrice={threePersonTentPrice}
             />
             <button
-              className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
-              disabled={campingBtnDisabled}
+              aria-disabled={campingBtnDisabled}
               onClick={() => {
                 setStep((prevStep) => prevStep + 1);
                 reserveSpot();
@@ -214,12 +227,21 @@ function Wrapper() {
               setStep={setStep}
               campingAreas={campingAreas}
               tickets={tickets}
+              formRef={formRef}
             />
             <button
               className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
               onClick={() => {
-                setStep((prevStep) => prevStep + 1);
+                console.log(formRef.current.elements.firstName);
+                // console.log(
+                //   formRef.current.querySelector(".info-loop").reportValidity()
+                // );
+                // if (
+                //   formRef.current.querySelector(".info-loop").reportValidity()
+                // ) {
+                //   setStep((prevStep) => prevStep + 1);
+                // }
               }}
             >
               VÆLG BETALING
