@@ -70,7 +70,9 @@ function Camping(props) {
               className="flex justify-between content-center gap-10"
             >
               <div>
-                <h3 className="font-medium text-base sm:text-lg">2 PERSONERS TELT</h3>
+                <h3 className="font-medium text-base sm:text-lg">
+                  2 PERSONERS TELT
+                </h3>
                 <p className="text-sm text-fooGrey-200">
                   + {props.twoPersonTentPrice} DKK
                 </p>
@@ -133,7 +135,9 @@ function Camping(props) {
 
             <label htmlFor="telt3" className="flex justify-between">
               <div>
-                <h3 className="font-medium text-base sm:text-lg">3 PERSONERS TELT </h3>
+                <h3 className="font-medium text-base sm:text-lg">
+                  3 PERSONERS TELT{" "}
+                </h3>
                 <p className="text-sm text-fooGrey-200">
                   + {props.threePersonTentPrice} DKK{" "}
                 </p>

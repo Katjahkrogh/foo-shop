@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import { Bebas_Neue } from "next/font/google";
 
@@ -36,66 +37,76 @@ function Basket(props) {
 
   const ticketsTotal = vipTotal + regularTotal;
 
+  const [basket, setBasket] = useState(false);
+
   return (
-    <aside className="bg-fooGrey-900 m-10 rounded-large p-10 flex flex-col min-w-max">
-      <div>
-        <h2 className={`${bebasNeue.className} text-3xl text-fooWhite-900`}>
-          KURV
-        </h2>
-        <div className="mb-4 mt-2">
-          {(props.ticketAmount > 0 || props.vipAmount > 0) && (
-            <h3 className={`${bebasNeue.className} text-xl text-fooYellow-200`}>
-              BILLETTER
-            </h3>
-          )}
-          {props.ticketAmount > 0 && (
-            <div className="flex justify-between items-center">
-              <div>
-                <p className={`text-base md:text-lg font-medium`}>FOO-BILLET</p>
-                <p className={`text-sm text-fooGrey-200`}>
-                  {props.priceRegular} DKK
-                </p>
+    <aside className="bg-fooGrey-900 fixed rounded-none mt-11 lg:static bottom-0 lg:rounded-large p-8 lg:p-10 flex flex-col w-screen lg:w-80 lg:m-10">
+      <section className={`${basket ? "block mb-5" : "hidden lg:block"}`}>
+        <div>
+          <h2 className={`${bebasNeue.className} text-3xl text-fooWhite-900`}>
+            KURV
+          </h2>
+          <div className="mb-4 mt-2">
+            {(props.ticketAmount > 0 || props.vipAmount > 0) && (
+              <h3
+                className={`${bebasNeue.className} text-xl text-fooYellow-200`}
+              >
+                BILLETTER
+              </h3>
+            )}
+            {props.ticketAmount > 0 && (
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className={`text-base md:text-lg font-medium`}>
+                    FOO-BILLET
+                  </p>
+                  <p className={`text-sm text-fooGrey-200`}>
+                    {props.priceRegular} DKK
+                  </p>
+                </div>
+                <p className={`text-xl`}>x {props.ticketAmount}</p>
               </div>
-              <p className={`text-xl`}>x {props.ticketAmount}</p>
+            )}
+            {props.vipAmount > 0 && (
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className={`text-base md:text-lg font-medium`}>
+                    VIP-BILLET
+                  </p>
+                  <p className={`text-sm text-fooGrey-200`}>
+                    {props.priceVIP} DKK
+                  </p>
+                </div>
+                <p className={`text-xl`}>x {props.vipAmount}</p>
+              </div>
+            )}
+          </div>
+
+          {props.ticketAmount === 0 && props.vipAmount === 0 && (
+            <div className="flex flex-col gap-2 items-center pt-6 pb-6">
+              <Image
+                src={"emptyBasket.svg"}
+                width={100}
+                height={100}
+                alt="Kurven er tom"
+              />
+              <p className="text-fooGrey-200 text-sm">Kurven er tom</p>
             </div>
           )}
-          {props.vipAmount > 0 && (
-            <div className="flex justify-between items-center">
-              <div>
-                <p className={`text-base md:text-lg font-medium`}>VIP-BILLET</p>
-                <p className={`text-sm text-fooGrey-200`}>
-                  {props.priceVIP} DKK
-                </p>
-              </div>
-              <p className={`text-xl`}>x {props.vipAmount}</p>
+
+          {props.selectedArea && (
+            <div className="pt-4 mb-4 border-t">
+              <h3
+                className={`${bebasNeue.className} text-xl text-fooYellow-200`}
+              >
+                CAMPING OMRÅDE
+              </h3>
+              <p className="font-medium uppercase text-base md:text-lg">
+                {props.selectedArea}
+              </p>
             </div>
           )}
         </div>
-    
-        {props.ticketAmount === 0 && props.vipAmount === 0 && (
-          <div className="flex flex-col gap-2 items-center pt-6 pb-6">
-            <Image
-              src={"emptyBasket.svg"}
-              width={100}
-              height={100}
-              alt="Kurven er tom"
-            />
-            <p className="text-fooGrey-200 text-sm">Kurven er tom</p>
-          </div>
-        )}
-
-        {props.selectedArea && (
-          <div className="pt-4 mb-4 border-t">
-            <h3 className={`${bebasNeue.className} text-xl text-fooYellow-200`}>
-              CAMPING OMRÅDE
-            </h3>
-            <p className="font-medium uppercase text-base md:text-lg">
-              {props.selectedArea}
-            </p>
-          </div>
-        )}
-      </div>
-      <div>
         <div className="pt-4 border-t">
           <h3 className="text-sm font-bold mb-1">OVERSIGT</h3>
 
@@ -132,11 +143,45 @@ function Basket(props) {
             <p>Booking gebyr</p> <p>{bookingFee} DKK</p>
           </div>
         </div>
-
-        <div className="flex justify-between text-xl font-medium mt-4">
-          <p>I alt</p> <p>{total} DKK</p>
+      </section>
+      <section className="flex justify-between">
+        <div className="flex text-lg font-medium mt-4 gap-5 lg:gap-32">
+          <p className="font-bold">I ALT</p> <p>{total} DKK</p>
         </div>
-      </div>
+        <div className="lg:hidden">
+          <button className="mt-3" onClick={() => setBasket(!basket)}>
+            {basket ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                fill="currentColor"
+                className="bi bi-arrow-down-circle"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                fill="currentColor"
+                className="bi bi-arrow-up-circle"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
+                />
+              </svg>
+            )}
+          </button>
+        </div>
+      </section>
     </aside>
   );
 }
