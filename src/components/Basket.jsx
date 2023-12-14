@@ -144,8 +144,8 @@ function Basket(props) {
           </div>
         </div>
       </section>
-      <section className="flex justify-between">
-        <div className="flex text-lg font-medium mt-4 gap-5 lg:gap-32">
+      <section className="flex justify-between lg:block">
+        <div className="flex justify-between text-lg font-medium mt-4 gap-5">
           <p className="font-bold">I ALT</p> <p>{total} DKK</p>
         </div>
         <div className="lg:hidden">
