@@ -7,9 +7,9 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
-function Info({ tickets }) {
+function Info({ tickets, formRef }) {
   return (
-    <fieldset>
+    <fieldset id="infoStep">
       <h2
         className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 `}
       >

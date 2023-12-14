@@ -12,6 +12,7 @@ import Timer from "./Timer";
 
 function Wrapper() {
   const formRef = useRef(null);
+
   // Skift mellem views ud fra steps
   const [step, setStep] = useState(0);
 
@@ -148,8 +149,8 @@ function Wrapper() {
         <form
           onSubmit={submit}
           id="bookingForm"
-          ref={formRef}
-          className="w-full lg:w-4/6"
+          ref={formRef} 
+          className="w-full lg:w-4/6 mb-40 lg:mb-1"
         >
           <div
             className={`flex flex-col m-10 sm:px-10 ${
@@ -227,19 +228,32 @@ function Wrapper() {
               setStep={setStep}
               campingAreas={campingAreas}
               tickets={tickets}
+              formRef={formRef}
             />
             <button
               className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
               onClick={() => {
-                console.log(formRef.current.elements.firstName);
-                // console.log(
-                //   formRef.current.querySelector(".info-loop").reportValidity()
-                // );
-                // if (
-                //   formRef.current.querySelector(".info-loop").reportValidity()
-                // ) {
-                //   setStep((prevStep) => prevStep + 1);
+                console.log(formRef.current.querySelector("#infoStep"));
+
+                const infoStepForm =
+                formRef.current?.querySelector("#infoStep");
+                infoStepForm.checkValidity()
+
+                if (infoStepForm.checkValidity(true)) {
+                  setStep((prevStep) => prevStep + 1);
+                }
+
+                // // Udfør validering, hvis Info-steppet er tilgængeligt
+                // if (infoStepForm) {
+                //   const isInfoStepValid = infoStepForm.reportValidity();
+
+                //   if (isInfoStepValid) {
+                //     // Gør noget, når formularen er gyldig
+                //     setStep((prevStep) => prevStep + 1); // For eksempel skift til næste trin
+                //   } else {
+                //     // Gør noget, når formularen ikke er gyldig
+                //   }
                 // }
               }}
             >
