@@ -3,7 +3,7 @@ import { ConfigProvider, Statistic } from "antd";
 import { useState } from "react";
 const { Countdown } = Statistic;
 
-const Timer = ({ setStep, step }) => {
+const Timer = ({setStep}) => {
   // UseState benyttet for at timer nulstiller sig selv ved nyt flow
   const [deadline, setDeadline] = useState(Date.now() + 5 * 60 * 1000);
 
