@@ -20,15 +20,11 @@ function Info({ tickets, setStep }) {
 
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    validateForm();
-  }, [firstName, lastName, email, phone]);
-  // Validate form
   const validateForm = () => {
     let errors = {};
+    if (!firstName) {
       errors.firstName = "Name is required.";
-    
-
+    }
     if (!lastName) {
       errors.lastName = "Name is required.";
     }
@@ -42,11 +38,13 @@ function Info({ tickets, setStep }) {
     } 
 
     setErrors(errors);
-    setIsFormValid(Object.keys(errors).length === 0);
+    setIsFormValid(true);
   }; 
 
      const handleInfoBtn = () => {
-       if (isFormValid) {
+      validateForm();
+
+       if (isFormValid === true) {
          console.log("info is valid!");
            setStep((prevStep) => prevStep + 1);
        } else {
