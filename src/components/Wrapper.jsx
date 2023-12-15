@@ -171,13 +171,14 @@ const [error, setError] = useState("");
               priceVip={priceVip}
             />
 
-            <p>{error}</p>
+            <p className="text-right  text-red-500">{error}</p>
             <button
-              className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 mt-10 p-4 px-8 rounded-full w-full md:w-fit place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 aria-duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
               "
+              aria-disabled={totalAmount < 1}
               onClick={() => {
                 if (totalAmount < 1) {
-                  setError("Du skal vælge en billet");
+                  setError("Du skal vælge en billet!");
                 } else {
                   setStep((prevStep) => prevStep + 1);
                   setError("");
@@ -209,14 +210,14 @@ const [error, setError] = useState("");
               threePersonTentAmount={threePersonTentAmount}
               threePersonTentPrice={threePersonTentPrice}
             />
-            <p>{error}</p>
+            <p className="text-right  text-red-500">{error}</p>
             <button
-              className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
               aria-disabled={campingBtnDisabled}
               onClick={() => {
                 if (selectedArea === null) {
-                  setError("Du skal vælge en billet");
+                  setError("Du skal vælge et campingområde!");
                 } else {
                   setStep((prevStep) => prevStep + 1);
                   reserveSpot();
@@ -239,7 +240,6 @@ const [error, setError] = useState("");
               tickets={tickets}
               formRef={formRef}
             />
-  
           </div>
 
           <div
@@ -247,15 +247,7 @@ const [error, setError] = useState("");
               step === 3 ? "" : "hidden"
             }`}
           >
-            <Payment setStep={setStep} campingAreas={campingAreas} />
-            <button
-              className="bg-fooPink-900 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-fooPink-800 duration-300 cursor-pointer"
-              onClick={() => {
-                setStep((prevStep) => prevStep + 1);
-              }}
-            >
-              SE OVERBLIK OG BETAL
-            </button>
+            <Payment setStep={setStep} />
           </div>
 
           {step === 4 && (
@@ -278,10 +270,10 @@ const [error, setError] = useState("");
               <button
                 type="submit"
                 id="bookingForm"
-                className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 w-full p-4 px-8 rounded-full mt-10 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+                className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 w-full p-4 px-8 rounded-full mt-6 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
               "
               >
-                BETAL (submit)
+                BETAL
               </button>
             </div>
           )}

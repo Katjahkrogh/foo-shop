@@ -18,7 +18,7 @@ function Header() {
           >
             FOOFEST 2024
           </h1>
-          <p className="text-lg md:text-xl mb-2">10.07.2024 - 17.07.2024</p>
+          <p className="text-lg md:text-xl mb-2 text-fooGrey-200">10.07.2024 - 17.07.2024</p>
         </div>
         <Image
           src="/logo.svg"

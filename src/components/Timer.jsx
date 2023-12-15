@@ -13,18 +13,18 @@ const Timer = ({setStep}) => {
   };
 
   return (
-    <div className="flex content-baseline justify-center bg-fooGrey-900 ml-0 mr-0 p-3">
-      <p className="text-lg mr-2 text-fooYellow-200">Tid til at gennemføre:</p>
+    <div className="flex  justify-center items-baseline bg-fooGrey-900 ml-0 mr-0 p-3">
+      <p className="text-base uppercase mr-2 text-fooWhite-900">Tid til at gennemføre:</p>
       <ConfigProvider
         theme={{
           components: {
             Statistic: {
-              contentFontSize: 20,
+              contentFontSize: 18,
             },
           },
           token: {
-            colorText: "#FAE499",
-            lineHeight: 1.4,
+            colorText: "#FFFFFF",
+            lineHeight: 1.2,
           },
         }}
       >

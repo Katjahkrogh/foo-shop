@@ -10,53 +10,62 @@ const bebasNeue = Bebas_Neue({
 
 
 function Info({ tickets, setStep }) {
+ const [infoForm, setInfoForm] = useState({
+   firstName: "",
+   lastName: "",
+   email: "",
+   phone: "",
+   errors: {},
+ });
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState(""); 
 
-  const [isFormValid, setIsFormValid] = useState(false);
+  const handleChange = (e) => {
+    setInfoForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
 
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
     let errors = {};
-    if (!firstName) {
+    if (!infoForm.firstName ) {
       errors.firstName = "Name is required.";
     }
-    if (!lastName) {
+    if (!infoForm.lastName) {
       errors.lastName = "Name is required.";
     }
 
-    if (!email) {
+    if (!infoForm.email) {
       errors.email = "Email is required.";
     } 
 
-    if (!phone) {
-      errors.password = "Password is required.";
+    if (!infoForm.phone) {
+      errors.phone = "Phone is required.";
     } 
 
     setErrors(errors);
-    setIsFormValid(true);
   }; 
 
-     const handleInfoBtn = () => {
+     const handleBtn = () => {
       validateForm();
 
-       if (isFormValid === true) {
+       if (
+         infoForm.firstName &&
+         infoForm.lastName &&
+         infoForm.email &&
+         infoForm.phone 
+       ) {
          console.log("info is valid!");
-           setStep((prevStep) => prevStep + 1);
+         setStep((prevStep) => prevStep + 1);
        } else {
          console.log("info not valid");
-        
        }
      }; 
 
   return (
     <fieldset id="infoStep">
       <h2
-        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 `}
+        className={`${bebasNeue.className} text-3xl md:text-4xl text-fooYellow-200 `}
       >
         INFORMATION
       </h2>
@@ -66,69 +75,89 @@ function Info({ tickets, setStep }) {
 
       {tickets.map((ticket) => (
         <div
-          className="container mx-auto border-b border-white mb-4"
+          className="container mx-auto border-b border-white mb-6 pb-4"
           key={ticket.id}
         >
           <legend
-            className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200`}
+            className={`${bebasNeue.className} text-2xl text-fooYellow-200 `}
           >
             {ticket.ticketName}
           </legend>
-          <p className="font-medium  text-lg mb-8 text-fooGrey-200 ">
-            Deltager nr. {ticket.id + 1}
+          <p className="text-base mb-6 uppercase font-medium">
+            Festivalgæst nr. {ticket.id + 1}
           </p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
-            {errors.firstName && (<p className="text-red-500"> hallooooo </p>)}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
             <div>
-              <label htmlFor="fornavn">Fornavn</label>
-              
+              <label
+                htmlFor={`firstName${ticket.id}`}
+                className="w-full text-sm text-fooGrey-200 "
+              >
+                Fornavn
+              </label>
+
               <input
                 type="text"
                 placeholder="Fornavn"
-                className="border p-2 rounded-lg w-full  text-black"
-                id="fornavn"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
+                id={`firstName${ticket.id}`}
+                value={infoForm.firstName}
+                onChange={handleChange}
                 name="firstName"
+                minLength={2}
                 required
               ></input>
             </div>
             <div>
-              <label htmlFor="efternavn">Efternavn</label>
+              <label
+                htmlFor={`lastName${ticket.id}`}
+                className="w-full text-sm text-fooGrey-200"
+              >
+                Efternavn
+              </label>
               <input
                 type="text"
                 placeholder="Efternavn"
-                className="border p-2 rounded-lg w-full  text-black"
-                id="efternavn"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
+                id={`lastName${ticket.id}`}
+                value={infoForm.lastName}
+                onChange={handleChange}
                 name="lastName"
                 required
               ></input>
             </div>
             <div>
-              <label htmlFor="mail">Email</label>
+              <label
+                htmlFor={`email${ticket.id}`}
+                className="w-full text-sm text-fooGrey-200"
+              >
+                Email
+              </label>
               <input
                 type="email"
                 placeholder="eksempel@mail.com"
-                id="mail"
+                id={`email${ticket.id}`}
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="border p-2 rounded-lg w-full  text-black"
+                value={infoForm.email}
+                onChange={handleChange}
+                className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
                 required
               ></input>
             </div>
             <div>
-              <label htmlFor="telefon"> Telefon </label>
+              <label
+                htmlFor={`phone${ticket.id}`}
+                className="w-full text-sm text-fooGrey-200"
+              >
+                Telefon
+              </label>
               <input
                 type="tel"
                 placeholder="12 34 56 78"
-                className="border p-2 rounded-lg w-full text-black"
-                id="telefon"
+                className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
+                id={`phone${ticket.id}`}
                 name="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={infoForm.phone}
+                onChange={handleChange}
                 required
               ></input>
             </div>
@@ -136,9 +165,15 @@ function Info({ tickets, setStep }) {
         </div>
       ))}
       <button
-        className="enabled:bg-fooPink-900 disabled:bg-fooPink-900 disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+        className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
               "
-        onClick={handleInfoBtn}
+        aria-disabled={
+          infoForm.firstName === "" ||
+          infoForm.lastName === "" ||
+          infoForm.email === "" ||
+          infoForm.phone === ""
+        }
+        onClick={handleBtn}
       >
         VÆLG BETALING
       </button>

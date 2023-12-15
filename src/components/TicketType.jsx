@@ -20,9 +20,9 @@ function TicketType({
   const totalVipAmount = vipAmount; // Total antal VIP-billetter
 
   return (
-    <fieldset>
+    <fieldset className="mb-8 lg:mb-10">
       <h2
-        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-10`}
+        className={`${bebasNeue.className} text-3xl md:text-4xl text-fooYellow-200 mb-10`}
       >
         VÆLG DINE BILLETTER
       </h2>

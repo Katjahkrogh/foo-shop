@@ -41,9 +41,9 @@ function FinalOverview(props) {
     <aside>
       <div>
         <h2
-          className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-4`}
+          className={`${bebasNeue.className} text-3xl md:text-4xl text-fooYellow-200 mb-4`}
         >
-          OVERVIEW
+          DIN BESTILLING
         </h2>
 
         <div className="mb-4 mt-2">
@@ -100,51 +100,55 @@ function FinalOverview(props) {
       </div>
       <div>
         <div className="pt-4 border-t">
-          <h3 className="text-sm font-bold mb-1">OVERSIGT</h3>
+          <h3 className="text-base font-bold mb-1">OVERSIGT</h3>
 
-          <div className="flex justify-between text-sm text-fooGrey-200">
+          <div className="flex justify-between text-sm md:text-base text-fooGrey-200">
             <p>Billetter x {props.totalAmount}</p> <p> {ticketsTotal} DKK</p>
           </div>
 
           {props.twoPersonTentAmount > 0 && (
-            <div className="flex justify-between text-sm">
-              <p className="text-fooGrey-200 text-sm">
+            <div className="flex justify-between text-sm md:text-base">
+              <p className="text-fooGrey-200 text-sm md:text-base">
                 2 personers telt x {props.twoPersonTentAmount}
               </p>
-              <p className="text-fooGrey-200 text-sm">
+              <p className="text-fooGrey-200 text-sm md:text-base">
                 {twoPersonTentTotal} DKK
               </p>
             </div>
           )}
 
           {props.threePersonTentAmount > 0 && (
-            <div className="flex justify-between text-sm text-fooGrey-200">
+            <div className="flex justify-between text-sm md:text-base text-fooGrey-200">
               <p>3 personers telt x {props.threePersonTentAmount}</p>
               <p>{threePersonTentTotal} DKK</p>
             </div>
           )}
 
           {props.greenCamping === true && (
-            <div className="flex justify-between text-sm text-fooGrey-200">
+            <div className="flex justify-between text-sm md:text-base text-fooGrey-200">
               <p>Green camping</p>
               <p>{props.greenCampingPrice} DKK</p>
             </div>
           )}
 
-          <div className="flex justify-between text-sm text-fooGrey-200">
+          <div className="flex justify-between text-sm md:text-base text-fooGrey-200">
             <p>Booking gebyr</p> <p>{bookingFee} DKK</p>
           </div>
         </div>
 
-        <div className="flex justify-between text-xl font-medium mt-4">
+        <div className="flex justify-between text-2xl md:text-3xl font-semibold mt-8">
           <p>I alt</p> <p>{total} DKK</p>
         </div>
       </div>
 
-      <div className="flex gap-2 items-center mt-4">
+
+      <div className="flex gap-2 items-center mt-6">
         <input type="checkbox" id="jatak" required className="w-3 h-3" />
-        <label htmlFor="jatak" className="text-sm">Jeg accepterer købsbetingelser</label>
+        <label htmlFor="jatak" className="text-sm">
+          Jeg accepterer købsbetingelser
+        </label>
       </div>
+
     </aside>
   );
 }

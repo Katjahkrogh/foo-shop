@@ -10,7 +10,7 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
-function Payment() {
+function Payment({setStep}) {
   const [cardInfo, setCardInfo] = useState({
     number: "",
     expiry: "",
@@ -68,14 +68,53 @@ function Payment() {
     }
   };
 
+  //validate fields
+    const [errors, setErrors] = useState({});
+
+    const validateForm = () => {
+      let errors = {};
+      if (!cardInfo.number) {
+        errors.number = "Name is required.";
+      }
+      if (!cardInfo.name) {
+        errors.name = "Name is required.";
+      }
+
+      if (!cardInfo.expiry) {
+        errors.expiry = "Email is required.";
+      }
+
+      if (!cardInfo.cvc) {
+        errors.cvc = "Password is required.";
+      }
+
+      setErrors(errors);
+    };
+
+    const handleBtn = () => {
+      validateForm();
+
+      if (
+        cardInfo.number &&
+        cardInfo.name &&
+        cardInfo.expiry &&
+        cardInfo.cvc
+      ) {
+        console.log("payment is valid!");
+        setStep((prevStep) => prevStep + 1);
+      } else {
+        console.log("payment not valid");
+      }
+    }; 
+
   return (
     <fieldset>
       <h2
-        className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-10`}
+        className={`${bebasNeue.className} text-3xl md:text-4xl text-fooYellow-200 mb-10`}
       >
         BETALINGSOPLYSNINGER
       </h2>
-      <div className="flex flex-col sm:flex-row gap-10 sm:gap-8 ">
+      <div className="flex flex-col sm:flex-row gap-10 sm:gap-8 items-center ">
         <div>
           <Cards
             number={cardInfo.number}
@@ -86,13 +125,17 @@ function Payment() {
           />
         </div>
         <div className="flex flex-wrap gap-4">
-          <label htmlFor="number" className=" w-full">
+          <label htmlFor="number" className=" w-full text-sm text-fooGrey-200">
+            {" "}
+            Kortnummer
             <input
-              className="text-black border p-2 rounded-lg w-full"
+              className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
               unique="cardNumber"
-              placeholder="Kort nummer"
-              maxLength="16"
+              placeholder="Kort nummer"      
+              minLength={16}
+              maxLength={16}
               name="number"
+              id="number"
               value={cardInfo.number}
               onKeyDown={handleNumbersOnly}
               onChange={handleChange}
@@ -101,12 +144,16 @@ function Payment() {
             />
           </label>
 
-          <label htmlFor="name" className=" w-full">
+          <label htmlFor="name" className=" w-full text-sm text-fooGrey-200">
+            Kortholder navn
             <input
-              className="text-black border p-2 rounded-lg w-full"
+              className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
               type="text"
               placeholder="Kortholder navn"
               name="name"
+              id="name"
+              autoComplete="true"
+              minLength={2}
               value={cardInfo.name}
               onChange={handleChange}
               onFocus={handleInputFocus}
@@ -114,13 +161,16 @@ function Payment() {
             />
           </label>
           <div className="flex gap-4 w-full">
-            <label htmlFor="expiry">
+            <label htmlFor="expiry" className="text-sm text-fooGrey-200">
+              {" "}
+              Udløbsdato
               <input
-                className="text-black border-fooGrey-900 border p-2 rounded-lg w-full"
+                className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
                 unique="cardExpiry"
                 placeholder="MM/ÅÅ"
                 maxLength="5"
                 name="expiry"
+                id="expiry"
                 value={cardInfo.expiry}
                 onKeyDown={handleNumbersOnly}
                 onKeyUp={handleCardExpiry}
@@ -129,13 +179,15 @@ function Payment() {
                 required
               />
             </label>
-            <label htmlFor="cvc">
+            <label htmlFor="cvc" className="text-sm text-fooGrey-200">
+              Kontrolcifre
               <input
-                className="text-black border p-2 rounded-lg w-full"
+                className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
                 unique="cardCvc"
                 placeholder="CVC"
                 maxLength="4"
                 name="cvc"
+                id="cvc"
                 value={cardInfo.cvc}
                 onChange={handleChange}
                 onFocus={handleInputFocus}
@@ -145,6 +197,19 @@ function Payment() {
           </div>
         </div>
       </div>
+      <button
+        className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
+              "
+        aria-disabled={
+          cardInfo.number === "" ||
+          cardInfo.name === "" ||
+          cardInfo.expiry === "" ||
+          cardInfo.cvc === ""
+        }
+        onClick={handleBtn}
+      >
+        SE OVERBLIK OG BETAL
+      </button>
     </fieldset>
   );
 }
