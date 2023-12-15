@@ -131,7 +131,7 @@ function Payment({setStep}) {
             <input
               className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
               unique="cardNumber"
-              placeholder="Kort nummer"      
+              placeholder="Kort nummer"
               minLength={16}
               maxLength={16}
               name="number"
@@ -197,19 +197,21 @@ function Payment({setStep}) {
           </div>
         </div>
       </div>
-      <button
-        className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 md:mt-20 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
+      <div className="flex justify-end">
+        <button
+          className="font-medium enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10  place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
               "
-        aria-disabled={
-          cardInfo.number === "" ||
-          cardInfo.name === "" ||
-          cardInfo.expiry === "" ||
-          cardInfo.cvc === ""
-        }
-        onClick={handleBtn}
-      >
-        SE OVERBLIK OG BETAL
-      </button>
+          aria-disabled={
+            cardInfo.number === "" ||
+            cardInfo.name === "" ||
+            cardInfo.expiry === "" ||
+            cardInfo.cvc === ""
+          }
+          onClick={handleBtn}
+        >
+          SE OVERBLIK OG BETAL
+        </button>
+      </div>
     </fieldset>
   );
 }

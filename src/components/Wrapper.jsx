@@ -173,7 +173,7 @@ const [error, setError] = useState("");
 
             <p className="text-right  text-red-500">{error}</p>
             <button
-              className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 mt-10 p-4 px-8 rounded-full w-full md:w-fit place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 aria-duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
+              className="font-medium enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 mt-10 p-4 px-8 rounded-full w-full md:w-fit place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 aria-duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
               "
               aria-disabled={totalAmount < 1}
               onClick={() => {
@@ -212,7 +212,7 @@ const [error, setError] = useState("");
             />
             <p className="text-right  text-red-500">{error}</p>
             <button
-              className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
+              className="font-medium enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
               aria-disabled={campingBtnDisabled}
               onClick={() => {
@@ -225,7 +225,7 @@ const [error, setError] = useState("");
                 }
               }}
             >
-              FIND MINE BILLETTER
+              RESEVER BILLETTER
             </button>
           </div>
 
@@ -270,10 +270,10 @@ const [error, setError] = useState("");
               <button
                 type="submit"
                 id="bookingForm"
-                className="enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 w-full p-4 px-8 rounded-full mt-6 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
+                className="font-medium enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 w-full p-4 px-8 rounded-full mt-6 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
               "
               >
-                BETAL
+                GENNEMFØR KØB
               </button>
             </div>
           )}
