@@ -21,7 +21,7 @@ function Camping(props) {
       {/* VÆLG CAMPING AREA */}
       <div>
         <h2
-          className={`${bebasNeue.className} text-2xl md:text-4xl text-fooYellow-200 mb-2`}
+          className={`${bebasNeue.className} text-3xl md:text-4xl text-fooYellow-200 mb-2`}
         >
           VÆLG CAMPING OMRÅDE
         </h2>
