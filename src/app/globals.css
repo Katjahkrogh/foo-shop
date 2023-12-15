@@ -8,6 +8,7 @@ body {
 }
 
 /* Skjul op- og ned-knapper for input type number */
+/* Brugt chat-gpt til at fortælle hvordan vi skjuler de default op og ned knapper på input type number */
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button {
   display: none;
