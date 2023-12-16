@@ -8,11 +8,11 @@ const bebasNeue = Bebas_Neue({
 });
 
 function TicketType({
-  setVipAmount, // funktion til at opdatere antal VIP-billetter
-  vipAmount, // tilstand for antal VIP-billetter
-  setTicketAmount, // funktion til at opdatere antal "foo-billetter"
-  ticketAmount, // tilstand for antal "foo-billetter"
-  setTickets, // funktion til at opdatere billetlisten
+  setVipAmount, 
+  vipAmount, 
+  setTicketAmount, 
+  ticketAmount,
+  setTickets, 
   priceVip,
   priceRegular,
 }) {

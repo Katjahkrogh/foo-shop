@@ -67,32 +67,33 @@ function Payment({setStep}) {
       e.preventDefault();
     }
   };
+// vi skal slette nedenstående
 
   //validate fields
-    const [errors, setErrors] = useState({});
+    // const [errors, setErrors] = useState({});
 
-    const validateForm = () => {
-      let errors = {};
-      if (!cardInfo.number) {
-        errors.number = "Name is required.";
-      }
-      if (!cardInfo.name) {
-        errors.name = "Name is required.";
-      }
+    // const validateForm = () => {
+    //   let errors = {};
+    //   if (!cardInfo.number) {
+    //     errors.number = "Name is required.";
+    //   }
+    //   if (!cardInfo.name) {
+    //     errors.name = "Name is required.";
+    //   }
 
-      if (!cardInfo.expiry) {
-        errors.expiry = "Email is required.";
-      }
+    //   if (!cardInfo.expiry) {
+    //     errors.expiry = "Email is required.";
+    //   }
 
-      if (!cardInfo.cvc) {
-        errors.cvc = "Password is required.";
-      }
+    //   if (!cardInfo.cvc) {
+    //     errors.cvc = "Password is required.";
+    //   }
 
-      setErrors(errors);
-    };
+    //   setErrors(errors);
+    // };
 
     const handleBtn = () => {
-      validateForm();
+      // validateForm();
 
       if (
         cardInfo.number &&

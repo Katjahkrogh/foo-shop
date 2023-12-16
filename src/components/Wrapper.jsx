@@ -29,8 +29,7 @@ function Wrapper() {
   const [selectedArea, setSelectedArea] = useState(null);
 
   const campingBtnDisabled = selectedArea === null;
-const [error, setError] = useState("");
-   
+  const [error, setError] = useState("");
 
   // let tatTotalPrice = tatPrice * totalAmount; sæt dette ned i kruven
 
@@ -42,9 +41,9 @@ const [error, setError] = useState("");
   // antal billetter
   const [ticketAmount, setTicketAmount] = useState(0);
   const [vipAmount, setVipAmount] = useState(0);
+
   const [tickets, setTickets] = useState([]);
 
-  // skal det være let eller const??
   let totalAmount = vipAmount + ticketAmount;
 
   // sætter ID fra resevationen
@@ -140,8 +139,6 @@ const [error, setError] = useState("");
     let reserveData = await reserveResponse.json();
     console.log(reserveData);
   }
-
- 
 
   return (
     <>
