@@ -10,7 +10,7 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
-function Payment({setStep}) {
+function Payment({ setStep }) {
   const [cardInfo, setCardInfo] = useState({
     number: "",
     expiry: "",
@@ -67,46 +67,15 @@ function Payment({setStep}) {
       e.preventDefault();
     }
   };
-// vi skal slette nedenstående
 
-  //validate fields
-    // const [errors, setErrors] = useState({});
-
-    // const validateForm = () => {
-    //   let errors = {};
-    //   if (!cardInfo.number) {
-    //     errors.number = "Name is required.";
-    //   }
-    //   if (!cardInfo.name) {
-    //     errors.name = "Name is required.";
-    //   }
-
-    //   if (!cardInfo.expiry) {
-    //     errors.expiry = "Email is required.";
-    //   }
-
-    //   if (!cardInfo.cvc) {
-    //     errors.cvc = "Password is required.";
-    //   }
-
-    //   setErrors(errors);
-    // };
-
-    const handleBtn = () => {
-      // validateForm();
-
-      if (
-        cardInfo.number &&
-        cardInfo.name &&
-        cardInfo.expiry &&
-        cardInfo.cvc
-      ) {
-        console.log("payment is valid!");
-        setStep((prevStep) => prevStep + 1);
-      } else {
-        console.log("payment not valid");
-      }
-    }; 
+  const handleBtn = () => {
+    if (cardInfo.number && cardInfo.name && cardInfo.expiry && cardInfo.cvc) {
+      console.log("payment is valid!");
+      setStep((prevStep) => prevStep + 1);
+    } else {
+      console.log("payment not valid");
+    }
+  };
 
   return (
     <fieldset>
@@ -127,7 +96,6 @@ function Payment({setStep}) {
         </div>
         <div className="flex flex-wrap gap-4">
           <label htmlFor="number" className=" w-full text-sm text-fooGrey-200">
-            {" "}
             Kortnummer
             <input
               className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
@@ -163,7 +131,6 @@ function Payment({setStep}) {
           </label>
           <div className="flex gap-4 w-full">
             <label htmlFor="expiry" className="text-sm text-fooGrey-200">
-              {" "}
               Udløbsdato
               <input
                 className="p-2 rounded-lg w-full  text-black border-2 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
