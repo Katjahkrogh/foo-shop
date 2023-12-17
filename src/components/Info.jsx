@@ -23,32 +23,7 @@ function Info({ tickets, setStep }) {
     setInfoForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-
-  const [errors, setErrors] = useState({});
-
-  const validateForm = () => {
-    let errors = {};
-    if (!infoForm.firstName ) {
-      errors.firstName = "Name is required.";
-    }
-    if (!infoForm.lastName) {
-      errors.lastName = "Name is required.";
-    }
-
-    if (!infoForm.email) {
-      errors.email = "Email is required.";
-    } 
-
-    if (!infoForm.phone) {
-      errors.phone = "Phone is required.";
-    } 
-
-    setErrors(errors);
-  }; 
-
      const handleBtn = () => {
-      validateForm();
-
        if (
          infoForm.firstName &&
          infoForm.lastName &&

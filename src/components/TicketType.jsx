@@ -16,8 +16,7 @@ function TicketType({
   priceVip,
   priceRegular,
 }) {
-  const totalTicketAmount = ticketAmount; // Total antal "foo-billetter"
-  const totalVipAmount = vipAmount; // Total antal VIP-billetter
+
 
   return (
     <fieldset className="mb-8 lg:mb-10">
@@ -75,7 +74,7 @@ function TicketType({
             min={0}
             name="billet"
             id="foo-billet"
-            value={totalTicketAmount}
+            value={ticketAmount}
           />
 
           {/* TILFØJ 1 FOO-BILLet */}
@@ -154,7 +153,7 @@ function TicketType({
             name="billet"
             id="vip-billet"
             min={0}
-            value={totalVipAmount}
+            value={vipAmount}
           />
 
           {/* TILFØJ 1 VIP-billet  */}
