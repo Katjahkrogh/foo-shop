@@ -16,6 +16,8 @@ function Camping(props) {
   const totalTwoTentAmount = props.twoPersonTentAmount;
   const totalThreeTentAmount = props.threePersonTentAmount;
 
+
+
   return (
     <fieldset>
       {/* VÆLG CAMPING AREA */}
@@ -116,7 +118,19 @@ function Camping(props) {
                   type="button"
                   aria-label={`Tilføj 1x 2-personers telt`}
                   onClick={() => {
-                    props.setTwoPersonTentAmount(props.twoPersonTentAmount + 1);
+                    if (
+                      totalThreeTentAmount + totalTwoTentAmount <
+                      props.totalAmount
+                    ) {
+                      props.setTwoPersonTentAmount(
+                        props.twoPersonTentAmount + 1
+                      );
+                    } else {
+                      console.log("nope");
+                      props.setError(
+                        "Du kan maks vælge samme antal telte som billetter"
+                      );
+                    }
                   }}
                 >
                   <svg
@@ -182,9 +196,16 @@ function Camping(props) {
                   type="button"
                   aria-label={`Tilføj 1x 3-personers telt`}
                   onClick={() => {
-                    props.setThreePersonTentAmount(
-                      props.threePersonTentAmount + 1
-                    );
+                    if (totalThreeTentAmount + totalTwoTentAmount < props.totalAmount) {
+                      props.setThreePersonTentAmount(
+                        totalThreeTentAmount + 1
+                      );
+                    } else {
+                      console.log("nope");
+                      props.setError(
+                        "Du kan maks vælge samme antal telte som billetter"
+                      );
+                    }
                   }}
                 >
                   <svg

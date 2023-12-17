@@ -167,7 +167,7 @@ function Wrapper() {
               priceVip={priceVip}
             />
 
-            <p className="text-right  text-red-500">{error}</p>
+            <p className="text-right mt-4 text-red-500">{error}</p>
             <button
               className="font-medium enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 mt-10 p-4 px-8 rounded-full w-full md:w-fit place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 aria-duration-300 enabled:cursor-pointer aria-disabled:cursor-not-allowed
               "
@@ -205,8 +205,10 @@ function Wrapper() {
               twoPersonTentAmount={twoPersonTentAmount}
               threePersonTentAmount={threePersonTentAmount}
               threePersonTentPrice={threePersonTentPrice}
+              error={error}
+              setError={setError}
             />
-            <p className="text-right  text-red-500">{error}</p>
+            <p className="text-right mt-6 text-red-500">{error}</p>
             <button
               className="font-medium enabled:bg-fooPink-900 aria-disabled:bg-fooPink-900 aria-disabled:opacity-50 p-4 px-8 rounded-full w-full md:w-fit mt-10 place-self-end transition ease-in-out enabled:hover:-translate-y-1 enabled:hover:scale-110 enabled:hover:bg-fooPink-800 duration-300 enabled:cursor-pointer disabled:cursor-not-allowed
               "
@@ -234,7 +236,6 @@ function Wrapper() {
               setStep={setStep}
               campingAreas={campingAreas}
               tickets={tickets}
-              formRef={formRef}
             />
           </div>
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Bebas_Neue } from "next/font/google";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
@@ -16,7 +17,8 @@ function EndPage({ tickets }) {
       >
         Tak for dit køb!
       </h2>
-      <div className="flex items-baseline gap-2 cursor-pointer mt-2 md:mt-4 mb-10">
+    
+      <div className="flex items-baseline gap-2 mt-2 md:mt-4 mb-10">
         <Image
           src={"download.svg"}
           width={20}
@@ -28,7 +30,15 @@ function EndPage({ tickets }) {
         </h3>
       </div>
 
-      <div className="p-5">
+
+      <motion.div
+        className="p-5"
+        initial={{ opacity: 0, y: 500 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        animate={{ y: 0 }}
+        viewport={{ once: true }}
+      >
         {tickets.map((ticket) => (
           <Image
             src={"billet.svg"}
@@ -39,7 +49,7 @@ function EndPage({ tickets }) {
             className="mb-2"
           />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
