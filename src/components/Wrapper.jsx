@@ -3,7 +3,7 @@ import React from "react";
 import Camping from "./Camping";
 import TicketType from "./TicketType";
 import Info from "./Info";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Basket from "./Basket";
 import Payment from "./Payment";
 import EndPage from "./EndPage";
