@@ -11,8 +11,6 @@ import FinalOverview from "./FinalOverview";
 import Timer from "./Timer";
 
 function Wrapper() {
-  const formRef = useRef(null);
-
   // Skift mellem views ud fra steps
   const [step, setStep] = useState(0);
 
@@ -31,7 +29,6 @@ function Wrapper() {
   const campingBtnDisabled = selectedArea === null;
   const [error, setError] = useState("");
 
-  // let tatTotalPrice = tatPrice * totalAmount; sæt dette ned i kruven
 
   // antal telt tilføjelser
   const [twoPersonTentAmount, setTwoPersonTentAmount] = useState(0);
@@ -152,7 +149,6 @@ function Wrapper() {
         <form
           onSubmit={submit}
           id="bookingForm"
-          ref={formRef}
           className="w-full lg:w-4/6 mb-40 lg:mb-1"
         >
           <div
