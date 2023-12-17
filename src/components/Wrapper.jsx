@@ -52,7 +52,7 @@ function Wrapper() {
   // GET REQUEST - henter ledige billetter til camping
   const [campingAreas, setCampingAreas] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8080/available-spots")
+    fetch("https://robust-ionized-tartan.glitch.me/available-spots")
       .then((res) => res.json())
       .then((data) => {
         setCampingAreas(data);
@@ -70,11 +70,14 @@ function Wrapper() {
       amount: totalAmount,
     });
 
-    let response = await fetch("http://localhost:8080/reserve-spot", {
-      method: "PUT",
-      body: bodyContent,
-      headers: headersList,
-    });
+    let response = await fetch(
+      "https://robust-ionized-tartan.glitch.me/reserve-spot",
+      {
+        method: "PUT",
+        body: bodyContent,
+        headers: headersList,
+      }
+    );
 
     let booking = await response.json();
     setReservationId(booking.id);
@@ -124,7 +127,7 @@ function Wrapper() {
     let reserveBody = JSON.stringify({ id: reservationId });
 
     let reserveResponse = await fetch(
-      "http://localhost:8080/fullfill-reservation",
+      "https://robust-ionized-tartan.glitch.me/fullfill-reservation",
       {
         method: "POST",
         body: reserveBody,
